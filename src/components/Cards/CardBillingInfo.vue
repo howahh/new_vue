@@ -1,7 +1,7 @@
 <template>
 
 	<!-- Billing Information Card -->
-	<a-card :bordered="false" class="header-solid h-full" :bodyStyle="{paddingTop: 0, paddingBottom: '16px' }">
+	<a-card :bordered="false" class="header-solid" :bodyStyle="{paddingTop: 0, paddingBottom: '16px' }">
 		<template #title>
 			<h6 class="font-semibold m-0">Billing Information</h6>
 		</template>

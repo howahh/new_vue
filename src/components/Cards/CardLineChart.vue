@@ -1,5 +1,6 @@
 <template>
 
+	<!-- Line Chart card -->
 	<a-card :bordered="false" class="dashboard-bar-line header-solid">
 		<template #title>
 			<h6>Sales Overview</h6>			
@@ -11,6 +12,7 @@
 		</template>
 		<chart-line :height="310" :data="lineChartData"></chart-line>
 	</a-card>
+	<!-- / Line Chart card -->
 
 </template>
 

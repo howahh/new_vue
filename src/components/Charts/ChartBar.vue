@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<canvas ref="chart" :style="{'height': height + 'px'}"></canvas>
+		<!-- Bar chart -->
+		<canvas ref="chart" class="chart-bar" :style="{'height': height + 'px'}"></canvas>
+		<!-- / Bar chart -->
 	</div>
 </template>
 

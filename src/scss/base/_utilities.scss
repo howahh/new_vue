@@ -17,10 +17,10 @@ $colors: (
 
 @each $name, $value in $colors {
 	.bg-#{$name} {
-		background-color: $value;
+		background-color: $value !important;
 	}
 	.text-#{$name} {
-		color: $value;
+		color: $value !important;
 	}
 	.border-#{$name} {
 		border-color: $value;
@@ -43,6 +43,7 @@ $colors: (
 	color: #142738;
 }
 // / Base Colors
+
 
 // Neutral Colors
 $neutral-colors: (
@@ -77,6 +78,30 @@ $neutral-colors: (
 }
 // / Neutral Colors
 
+
+// Gradient Colors
+$theme-gradient-colors: (
+	"primary":    ($primary-gradient, $primary-gradient-state),
+	"secondary":  ($secondary-gradient, $secondary-gradient-state),
+	"success":    ($success-gradient, $success-gradient-state),
+	"info":       ($info-gradient, $info-gradient-state),
+	"warning":    ($warning-gradient, $warning-gradient-state),
+	"danger":     ($danger-gradient, $danger-gradient-state),
+	"light":      ($light-gradient, $light-gradient-state),
+	"dark":       ($dark-gradient, $dark-gradient-state)
+) !default;
+
+@mixin gradient-directional($start-color: $gray-700, $end-color: $gray-800, $deg: 45deg) {
+  	background-image: linear-gradient($deg, $start-color, $end-color);
+}
+@each $prop, $value in $theme-gradient-colors {
+	.bg-gradient-#{$prop} {
+		@include gradient-directional(nth($value, 1) 0%, nth($value, -1) 100%, $deg: 310deg);
+	}
+}
+// / Gradient Colors
+
+
 // Font
 .font-regular {
 	font-weight: $fw-regular !important;
@@ -106,7 +131,6 @@ $neutral-colors: (
 	text-align: center;
 }
 // / Font
-
 
 
 // Margin & Padding
@@ -155,6 +179,14 @@ $neutral-colors: (
 	@extend .ml-auto;
 	@extend .mr-auto;
 }
+.mx-auto {
+	@extend .ml-auto;
+	@extend .mr-auto;
+}
+.my-auto {
+	@extend .mt-auto;
+	@extend .mb-auto;
+}
 .mb-24 {
 	margin-bottom: 24px;
 }
@@ -188,11 +220,29 @@ $neutral-colors: (
 }
 // / Margin & Padding
 
+
+// Display
+.d-inline {
+	display: inline-block;
+}
+.d-flex {
+	display: flex;
+}
+.d-none {
+	display: none;
+}
+// / Display
+
+
 // Height
 .h-full {
 	height: 100%;
 }
+.h-auto {
+	height: auto;
+}
 // / Height
+
 
 // Shadows
 $shadows: (
@@ -209,6 +259,12 @@ $shadows: (
 }
 // / Shadows
 
+
+// Other utility stylings
+.img-contain {
+	max-width: 100%;
+}
+// / Other utility stylings
 
 // RTL
 .layout-dashboard-rtl {
@@ -236,3 +292,5 @@ $shadows: (
 	}
 }
 // / RTL
+
+// / Template's utility classes and helpers.

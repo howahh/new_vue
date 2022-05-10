@@ -3,8 +3,6 @@
 // Template's profile page styles.
 // 
 
-
-// Profile Page
 .layout-profile {
 	.header-control {
 		.btn-sign-in,
@@ -55,6 +53,11 @@
 	.ant-card-head {
 		padding: 0 16px;
 	}
+	.sidebar-toggler {
+		svg {
+			fill: #ffffff;
+		}
+	}
 }
 .profile-nav-bg {
 	height: 300px;
@@ -104,4 +107,5 @@
 		background-color: transparent;
 	}
 }
-// / Profile Page
+
+// / Template's profile page styles.

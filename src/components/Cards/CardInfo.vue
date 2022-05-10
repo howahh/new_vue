@@ -1,5 +1,6 @@
 <template>
 
+	<!-- Information card -->
 	<a-card :bordered="false" class="card-info">
 		<a-row type="flex">
 			<a-col class="col-content" :span="24" :xl="12">
@@ -24,6 +25,7 @@
 			</a-col>
 		</a-row>
 	</a-card>
+	<!-- / Information card -->
 
 </template>
 

@@ -1,26 +1,56 @@
 <!-- 
-	This is the dashboard page, it uses the dashboard layout in: 
+	This is the RTL dashboard page, it uses the dashboard layout in: 
 	"./layouts/DashboardRTL.vue" .
  -->
 
 <template>
-	<div>
-		<!-- Counter Widgets -->
-		<a-row :gutter="24">
-			<a-col :span="24" :lg="12" :xl="6" class="mb-24" v-for="(stat, index) in stats" :key="index">
-				<!-- Widget 1 Card -->
-				<WidgetCounter
-					:title="stat.title"
-					:value="stat.value"
-					:prefix="stat.prefix"
-					:suffix="stat.suffix"
-					:icon="stat.icon"
-					:status="stat.status"
-				></WidgetCounter>
-				<!-- / Widget 1 Card -->
+	<div class="dashboard">
+
+		<a-row :gutter="24" type="flex" align="stretch">
+			<a-col :span="24" :lg="12">
+
+				<h2 class="p-15">General Statistics</h2>
+
+				<!-- Counter Widgets -->
+				<a-row :gutter="24">
+					<a-col :span="24" :lg="24" :xl="12" class="mb-24" v-for="(stat, index) in stats" :key="index" style="position: relative; z-index: 1;">
+						<!-- Widget 1 Card -->
+						<WidgetCounter
+							:title="stat.title"
+							:value="stat.value"
+							:prefix="stat.prefix"
+							:suffix="stat.suffix"
+							:icon="stat.icon"
+							:status="stat.status"
+						></WidgetCounter>
+						<!-- / Widget 1 Card -->
+					</a-col>
+					
+				</a-row>
+				<!-- / Counter Widgets -->
+
+				<!-- Sales By Country Table -->
+				<a-row :gutter="24">
+					<a-col :span="24" :lg="24" class="mb-24" style="position: relative; z-index: 1;">
+						
+						<!-- SalesByCountry Table Card -->
+						<CardSalesByCountryTable></CardSalesByCountryTable>
+						<!-- / SalesByCountry Table Card -->
+						
+					</a-col>
+				</a-row>
+				<!-- / Sales By Country Table -->
+
 			</a-col>
 		</a-row>
-		<!-- / Counter Widgets -->
+
+		<div>
+
+			<!-- 3D Globe -->
+			<widget-globe></widget-globe>
+			<!-- 3D Globe -->
+
+		</div>
 
 		<!-- Charts -->
 		<a-row :gutter="24" type="flex" align="stretch">
@@ -41,56 +71,14 @@
 		</a-row>
 		<!-- / Charts -->
 
-		<!-- Table & Timeline -->
-		<a-row :gutter="24" type="flex" align="stretch">
-			<!-- Table -->
-			<a-col :span="24" :lg="16" class="mb-24">
-				
-				<!-- Projects Table Card -->
-				<CardProjectTable
-					:data="tableData"
-					:columns="tableColumns"
-				></CardProjectTable>
-				<!-- / Projects Table Card -->
-				
-			</a-col>
-			<!-- / Table -->
-
-			<!-- Timeline -->
-			<a-col :span="24" :lg="8" class="mb-24">
-
-				<!-- Orders History Timeline Card -->
-				<CardOrderHistory></CardOrderHistory>
-				<!-- / Orders History Timeline Card -->
-
-			</a-col>
-			<!-- / Timeline -->
-		</a-row>
-		<!-- / Table & Timeline -->
-
-		<!-- Cards -->
-		<a-row :gutter="24" type="flex" align="stretch">
-			<a-col :span="24" :xl="14" class="mb-24">
-
-				<!-- Information Card 1 -->
-				<CardInfo></CardInfo>
-				<!-- / Information Card 1 -->
-
-			</a-col>
-			<a-col :span="24" :xl="10" class="mb-24">
-
-				<!-- Information Card 2 -->
-				<CardInfo2></CardInfo2>
-				<!-- / Information Card 2 -->
-
-			</a-col>
-		</a-row>
-		<!-- / Cards -->
-
 	</div>
 </template>
 
 <script>
+
+	import WidgetGlobe from '../components/Widgets/WidgetGlobe' ;
+
+	import CardSalesByCountryTable from '../components/Cards/CardSalesByCountryTable' ;
 
 	// Bar chart for "Active Users" card.
 	import CardBarChart from '../components/Cards/CardBarChart' ;
@@ -101,19 +89,10 @@
 	// Counter Widgets
 	import WidgetCounter from '../components/Widgets/WidgetCounter' ;
 
-	// "Projects" table component.
-	import CardProjectTable from '../components/Cards/CardProjectTable' ;
-
-	// "Projects" table component.
-	import CardOrderHistory from '../components/Cards/CardOrderHistory' ;
-
-	// Information Card 1.
+	// Information card 1.
 	import CardInfo from '../components/Cards/CardInfo' ;
 
-	// Information Card 2.
-	import CardInfo2 from '../components/Cards/CardInfo2' ;
-
-	// Counter Widgets Stats
+	// Counter Widgets stats
 	const stats = [
 		{
 			title: "Today’s Sales",
@@ -162,125 +141,17 @@
 		},
 	] ;
 
-	// "Projects" table list of columns and their properties.
-	const tableColumns = [
-		{
-			title: 'COMPANIES',
-			dataIndex: 'company',
-			scopedSlots: { customRender: 'company' },
-			width: 300,
-		},
-		{
-			title: 'MEMBERS',
-			dataIndex: 'members',
-			scopedSlots: { customRender: 'members' },
-		},
-		{
-			title: 'BUDGET',
-			dataIndex: 'budget',
-			class: 'font-bold text-muted text-sm',
-		},
-		{
-			title: 'COMPLETION',
-			scopedSlots: { customRender: 'completion' },
-			dataIndex: 'completion',
-		},
-	];
-
-	// "Projects" table list of rows and their properties.
-	const tableData = [
-		{
-			key: '1',
-			company: {
-				name: 'Soft UI Shopify Version',
-				logo: 'images/logos/logo-shopify.svg',
-			},
-			members: [ "images/face-1.jpg", "images/face-4.jpg", "images/face-2.jpg", "images/face-3.jpg", ],
-			budget: '$14,000',
-			completion: 60,
-		},
-		{
-			key: '2',
-			company: {
-				name: 'Progress Track',
-				logo: 'images/logos/logo-atlassian.svg',
-			},
-			members: [ "images/face-4.jpg", "images/face-3.jpg", ],
-			budget: '$3,000',
-			completion: 10,
-		},
-		{
-			key: '3',
-			company: {
-				name: 'Fix Platform Errors',
-				logo: 'images/logos/logo-slack.svg',
-			},
-			members: [ "images/face-1.jpg", "images/face-2.jpg", "images/face-3.jpg", ],
-			budget: 'Not Set',
-			completion: {
-				label: '100',
-				status: 'success',
-				value: 100,
-			},
-		},
-		{
-			key: '4',
-			company: {
-				name: 'Launch new Mobile App',
-				logo: 'images/logos/logo-spotify.svg',
-			},
-			members: [ "images/face-1.jpg", "images/face-2.jpg", ],
-			budget: '$20,600',
-			completion: {
-				label: '100',
-				status: 'success',
-				value: 100,
-			},
-		},
-		{
-			key: '5',
-			company: {
-				name: 'Add the New Landing Page',
-				logo: 'images/logos/logo-jira.svg',
-			},
-			members: [ "images/face-1.jpg", "images/face-4.jpg", "images/face-2.jpg", "images/face-3.jpg", ],
-			budget: '$4,000',
-			completion: 80,
-		},
-		{
-			key: '6',
-			company: {
-				name: 'Redesign Online Store',
-				logo: 'images/logos/logo-invision.svg',
-			},
-			members: [ "images/face-1.jpg", "images/face-4.jpg", "images/face-3.jpg", ],
-			budget: '$2,000',
-			completion: {
-				label: 'Cancelled',
-				status: 'exception',
-				value: 100,
-			},
-		},
-	];
-
 	export default ({
 		components: {
+			CardSalesByCountryTable,
+			WidgetGlobe,
 			CardBarChart,
 			CardLineChart,
 			WidgetCounter,
-			CardProjectTable,
-			CardOrderHistory,
 			CardInfo,
-			CardInfo2,
 		},
 		data() {
 			return {
-
-				// Associating table data with its corresponding property.
-				tableData,
-
-				// Associating table columns with its corresponding property.
-				tableColumns,
 
 				// Counter Widgets Stats
 				stats,
@@ -290,5 +161,25 @@
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+	$md: 768px ;
+
+	.dashboard::v-deep {
+		.globeContainer {
+			position: absolute;
+			top: 0;
+			right: auto;
+			left: 0;
+			margin-top: 15rem;
+			margin-right: 6rem;
+		}
+		.ant-row-flex {
+			position: relative;
+			z-index: 1;
+
+			@media(min-width: $md) {
+				position: static;
+			}
+		}
+	}
 </style>

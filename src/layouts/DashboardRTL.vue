@@ -6,7 +6,7 @@
 	<div>
 
 		<!-- Dashboard Layout -->
-		<a-layout class="layout-dashboard layout-dashboard-rtl" id="layout-dashboard" :class="[navbarFixed ? 'navbar-fixed' : '', ! sidebarCollapsed ? 'has-sidebar' : '', layoutClass]">
+		<a-layout class="layout-dashboard layout-dashboard-rtl" id="layout-dashboard" :class="[navbarFixed ? 'navbar-fixed' : '', ! sidebarCollapsed ? 'has-sidebar' : '', layoutClass, sidebarMinimized ? 'sidebar-minimized' : '' ]">
 			
 			<!-- Settings Drawer -->
 			<DashboardSettingsDrawer
@@ -39,6 +39,7 @@
 					:navbarFixed="navbarFixed"
 					@toggleSettingsDrawer="toggleSettingsDrawer"
 					@toggleSidebar="toggleSidebar"
+					@minimizeSidebar="minimizeSidebar"
 				></DashboardHeader>
 				<!-- / Layout Header's Conditionally Fixed Wrapper -->
 
@@ -89,8 +90,12 @@
 		},
 		data() {
 			return {
+				
 				// Sidebar collapsed status.
 				sidebarCollapsed: false,
+
+				// Sidebar minimized status.
+				sidebarMinimized: false,
 				
 				// Main sidebar color.
 				sidebarColor: "primary",
@@ -103,24 +108,41 @@
 
 				// Settings drawer visiblility status.
 				showSettingsDrawer: false,
+				
 			}
 		},
 		methods: {
+
+			// Toggle sidebar's collapsed status.
 			toggleSidebar( value ) {
 				this.sidebarCollapsed = value ;
 			},
+			
+			// Toggle sidebar's minimized status.
+			minimizeSidebar( value ) {
+				this.sidebarMinimized = ! this.sidebarMinimized ;
+			},
+			
+			// Toggle ettings drawer's visiblility status.
 			toggleSettingsDrawer( value ) {
 				this.showSettingsDrawer = value ;
 			},
+			
+			// Toggle navbar's fixed status.
 			toggleNavbarPosition( value ) {
 				this.navbarFixed = value ;
 			},
+			
+			// Change sidebar's theme.
 			updateSidebarTheme( value ) {
 				this.sidebarTheme = value ;
 			},
+			
+			// Change sidebar's color.
 			updateSidebarColor( value ) {
 				this.sidebarColor = value ;
 			},
+
 		},
 		computed: {
 			// Sets layout's element's class based on route's meta data.

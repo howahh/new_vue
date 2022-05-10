@@ -1,5 +1,6 @@
 <template>
 
+	<!-- Counter widget -->
 	<a-card :bordered="false" class="widget-1">
 		<a-statistic
 			:title="title"
@@ -13,6 +14,7 @@
 		</a-statistic>
 		<div class="icon" v-html="icon"></div>
 	</a-card>
+	<!-- / Counter widget -->
 
 </template>
 

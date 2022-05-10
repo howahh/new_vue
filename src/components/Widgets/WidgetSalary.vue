@@ -1,6 +1,6 @@
 <template>
 
-	<!-- Salary Card -->
+	<!-- Salary Widget -->
 	<a-card :bordered="false" class="widget-2 h-full">
 		<a-statistic :value="value" :prefix="prefix">
 			<template #title>
@@ -10,7 +10,7 @@
 			</template>
 		</a-statistic>
 	</a-card>
-	<!-- / Salary Card -->
+	<!-- / Salary Widget -->
 
 </template>
 

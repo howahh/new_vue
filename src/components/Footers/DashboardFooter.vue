@@ -20,10 +20,10 @@
 
 				<!-- Footer Navigation Menu -->
 				<a-menu mode="horizontal">
-					<a-menu-item>Creative Tim</a-menu-item>
-					<a-menu-item>About Us</a-menu-item>
-					<a-menu-item>Blog</a-menu-item>
-					<a-menu-item>License</a-menu-item>
+					<a-menu-item><a href="https://creative-tim.com/" target="_blank">Creative Tim</a></a-menu-item>
+					<a-menu-item><a href="https://www.creative-tim.com/presentation" target="_blank">About Us</a></a-menu-item>
+					<a-menu-item><a href="https://www.creative-tim.com/blog" target="_blank">Blog</a></a-menu-item>
+					<a-menu-item><a href="https://www.creative-tim.com/license" target="_blank">Licenses</a></a-menu-item>
 				</a-menu>
 				<!-- / Footer Navigation Menu -->
 

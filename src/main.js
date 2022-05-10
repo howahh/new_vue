@@ -1,42 +1,38 @@
-/*
-=========================================================
-Muse - Vue Ant Design Dashboard - v1.0.0
-=========================================================
-
-Product Page: https://www.creative-tim.com/product/vue-ant-design-dashboard
-Copyright 2021 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. 
-*/
-
+// VueJS
 import Vue from 'vue'
+
+// Ant Design Vue
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
-import App from './App.vue'
-import DefaultLayout from './layouts/Default.vue'
-import DashboardLayout from './layouts/Dashboard.vue'
-import DashboardRTLLayout from './layouts/DashboardRTL.vue'
-import router from './router'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-import * as echarts from 'echarts';
-Vue.use(VueAxios,axios);
-Vue.prototype.$echarts = echarts
-// import './plugins/click-away'
-
-import './scss/app.scss';
 
 Vue.use(Antd);
 
-Vue.config.productionTip = false
+// Photoswipe Gallery
+import Photoswipe from 'vue-pswipe'
+Vue.use(Photoswipe)
+
+// Template Layouts
+import DefaultLayout from './layouts/Default.vue'
+import DashboardLayout from './layouts/Dashboard.vue'
+import DashboardRTLLayout from './layouts/DashboardRTL.vue'
 
 // Adding template layouts to the vue components.
 Vue.component("layout-default", DefaultLayout);
 Vue.component("layout-dashboard", DashboardLayout);
 Vue.component("layout-dashboard-rtl", DashboardRTLLayout);
 
+// Main application view
+import App from './App.vue'
+
+// Vue Router
+import router from './router'
+
+// App Styling
+import './scss/app.scss';
+
+Vue.config.productionTip = false
+
+// Initialize Vue
 new Vue({
   router,
   render: h => h(App)
