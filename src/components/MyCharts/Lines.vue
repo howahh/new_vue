@@ -1,10 +1,10 @@
 <template>
-  <div>hello, world</div>
+    <div class="lines-holder" id="myid"></div>
 </template>
 
 <script>
 export default {
-  
+    
 }
 </script>
 

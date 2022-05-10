@@ -7,6 +7,9 @@ import 'ant-design-vue/dist/antd.css';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import * as echarts from 'echarts'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 Vue.prototype.$echarts = echarts;
 Vue.use(VueAxios,axios);
 Vue.use(Antd);
