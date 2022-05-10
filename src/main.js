@@ -4,7 +4,11 @@ import Vue from 'vue'
 // Ant Design Vue
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
-
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import * as echarts from 'echarts'
+Vue.prototype.$echarts = echarts;
+Vue.use(VueAxios,axios);
 Vue.use(Antd);
 
 // Photoswipe Gallery
