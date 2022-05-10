@@ -14,6 +14,91 @@ let routes = [
 		name: 'Home',
 		redirect: '/dashboards/',
 	},
+
+	{
+		path: '/shouye',
+		name: '我的首页',
+		layout: "dashboard",
+		// route level code-splitting
+		// this generates a separate chunk (about.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		meta: {
+			title: '我的首页',
+			sidebarMap: ['dashboards'],
+			breadcrumbs: ['首页'],
+		},
+		component: () => import(/* webpackChunkName: "dashboard" */ '../views/shouye.vue'),
+	},
+	{
+		path: '/eventhandler',
+		name: '任务概览',
+		layout: "dashboard",
+		// route level code-splitting
+		// this generates a separate chunk (about.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		meta: {
+			title: '任务概览',
+			sidebarMap: ['dashboards'],
+			breadcrumbs: ['数据获取任务', '任务概览'],
+		},
+		component: () => import(/* webpackChunkName: "dashboard" */ '../views/EventHandler.vue'),
+	},
+	{
+		path: '/newtask',
+		name: '新建任务',
+		layout: "dashboard",
+		// route level code-splitting
+		// this generates a separate chunk (about.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		meta: {
+			title: '新建任务',
+			sidebarMap: ['dashboards'],
+			breadcrumbs: ['数据获取任务', '新建任务'],
+		},
+		component: () => import(/* webpackChunkName: "dashboard" */ '../views/NewTask.vue'),
+	},
+	{
+		path: '/eventresult',
+		name: '任务结果',
+		layout: "dashboard",
+		// route level code-splitting
+		// this generates a separate chunk (about.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		meta: {
+			title: '任务结果',
+			sidebarMap: ['dashboards'],
+			breadcrumbs: ['数据分析任务', '任务结果'],
+		},
+		component: () => import(/* webpackChunkName: "dashboard" */ '../views/EventResult.vue'),
+	},	{
+		path: '/taskstatus',
+		name: '任务状态',
+		layout: "dashboard",
+		// route level code-splitting
+		// this generates a separate chunk (about.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		meta: {
+			title: '任务状态',
+			sidebarMap: ['dashboards'],
+			breadcrumbs: ['数据分析任务', '任务状态'],
+		},
+		component: () => import(/* webpackChunkName: "dashboard" */ '../views/TaskStatus.vue'),
+	},	{
+		path: '/AIQA',
+		name: '智能问答系统',
+		layout: "dashboard",
+		// route level code-splitting
+		// this generates a separate chunk (about.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		meta: {
+			title: '智能问答系统',
+			sidebarMap: ['dashboards'],
+			breadcrumbs: ['智能问答系统'],
+		},
+		component: () => import(/* webpackChunkName: "dashboard" */ '../views/AIQA.vue'),
+	},
+
+	// ------------------------------
 	{
 		path: '/dashboards/',
 		name: 'Dashboard',
