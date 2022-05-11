@@ -9,6 +9,8 @@ import VueAxios from 'vue-axios'
 import * as echarts from 'echarts'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import dataV from '@jiaminghi/data-view'
+Vue.use(dataV)
 Vue.use(ElementUI);
 Vue.prototype.$echarts = echarts;
 Vue.use(VueAxios,axios);
