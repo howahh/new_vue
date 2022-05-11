@@ -2,9 +2,12 @@
 // 
 // Template's cards styles.
 // 
-
+.ant-card{
+	background-image: linear-gradient(to right, rgb(39,41,61), rgb(39,41,61), rgb(39,41,61) ) ;
+}
 .ant-card-body {
-    padding: 16px;
+    padding: 0px;
+	// background-image: linear-gradient(to right, rgb(39,41,61), rgb(39,41,61), rgb(39,41,61) ) ;
 }
 
 .layout-dashboard {
