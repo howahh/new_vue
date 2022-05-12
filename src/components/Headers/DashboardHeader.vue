@@ -1,6 +1,6 @@
 <template>
   <!-- Main Sidebar -->
-  <component :is="navbarFixed ? 'a-affix' : 'div'" :offset-top="top" >
+  <component :is="navbarFixed ? 'a-affix' : 'div'" :offset-top="top">
     <!-- Layout Header -->
     <a-layout-header>
       <a-row type="flex">

@@ -54,7 +54,7 @@ export default {
               left: 10,
               top: 10,
               textStyle: {
-                color: "#fff",
+                color: "rgb(154,154,154)",
               },
             },
             //展示图的展示位置
@@ -71,7 +71,7 @@ export default {
               right: 10,
               top: 10,
               textStyle: {
-                color: "#fff",
+                color: "rgb(154,154,154)",
               },
             },
             yAxis: {
@@ -79,7 +79,7 @@ export default {
               show: true,
               axisLine: {
                 lineStyle: {
-                  color: "#fff",
+                  color: "rgb(154,154,154)",
                   width: 1, //这里是为了突出显示加上的
                 },
               },
@@ -90,7 +90,7 @@ export default {
               boundaryGap: false,
               axisLine: {
                 lineStyle: {
-                  color: "#fff",
+                  color: "rgb(154,154,154)",
                   width: 1, //这里是为了突出显示加上的
                 },
               },
@@ -102,7 +102,7 @@ export default {
                 type: "line",
                 z: 0,
                 lineStyle: {
-                  color: "#2D3443",
+                  color:"rgb(154,154,154)",
                 },
               },
             },
@@ -116,7 +116,7 @@ export default {
                   show: true,
                   position: "right",
                   textStyle: {
-                    color: "white",
+                    color: "rgb(154,154,154)",
                   },
                 },
                 data: this.deDatas,
@@ -151,7 +151,7 @@ export default {
                   show: true,
                   position: "right",
                   textStyle: {
-                    color: "white",
+                    color: "rgb(154,154,154)",
                   },
                 },
                 data: this.datas,
@@ -192,7 +192,7 @@ export default {
   /* border: 1px solid; */
   border-radius: 12px;
   box-shadow: 1;
-  background-image: linear-gradient(to right, #00369E, #005CFD, #A18DFF ) ;
+  // background-image: linear-gradient(to right, #00369E, #005CFD, #A18DFF ) ;
 
   /* border-color: black; */
 }

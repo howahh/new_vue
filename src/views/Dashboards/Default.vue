@@ -165,7 +165,6 @@
 	$md: 768px ;
 
 	.dashboard::v-deep {
-	// background-color:rgb(30,30,47);
 
 		.globeContainer {
 			position: absolute;
