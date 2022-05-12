@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div :v-if="this.flag">
+    <div v-if="this.flag">
       <a-row>
         <a-col :span="10" :offset="1"></a-col>
         <a-col :span="10" :offset="1">
@@ -82,6 +82,9 @@ import queURL from "../assets/img/que.png";
 export default {
   name: "Conversation",
   props: ["words", "flag"],
+  mounted(){
+    console.log(this.flag);
+  },
   data() {
     return {
       ansURL: ansURL,
