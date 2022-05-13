@@ -2,8 +2,8 @@
 
 	<!-- Active Users Card -->
 	<a-card :bordered="false" class="dashboard-bar-chart">
-		<chart-bar :height="220" :data="barChartData"></chart-bar>
-		<div class="card-title">
+		<chart-bar :height="200" :data="barChartData"></chart-bar>
+		<!-- <div class="card-title">
 			<h6>Active Users</h6>
 			<p>than last week <span class="text-success">+23%</span></p>
 		</div>
@@ -27,7 +27,7 @@
 				<h4>82</h4>
 				<span>Items</span>
 			</a-col>
-		</a-row>
+		</a-row> -->
 	</a-card>
 	<!-- Active Users Card -->
 
@@ -46,14 +46,14 @@
 			return {
 				// Data for bar chart.
 				barChartData: {
-					labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09"],
+					labels: ["12月", "1月", "2月", "3月", "4月", "5月"],
 					datasets: [{
 						label: "Sales",
 						backgroundColor: '#fff',
 						borderWidth: 0,
 						borderSkipped: false,
 						borderRadius: 6,
-						data: [850, 600, 500, 620, 900, 500, 900, 630, 900],
+						data: [850, 600, 500, 620, 900, 500],
 						maxBarThickness: 20,
 					}, ],
 				},

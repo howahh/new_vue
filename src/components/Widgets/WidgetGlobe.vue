@@ -1,7 +1,7 @@
 <template>
 	<!-- Globe widget -->
 	<div ref="globeContainer" class="globeContainer">
-		<canvas ref="globe" width="700" height="655" class=""></canvas>
+		<canvas ref="globe" width="700" height="570" class=""></canvas>
 	</div>
 	<!-- Globe widget -->
 </template>
@@ -20,7 +20,7 @@
 			let container = this.$refs.globeContainer ;
 			let canvas = this.$refs.globe ;
 
-			const globeRadius = 100;
+			const globeRadius = 80;
 			const globeWidth = 4098 / 2;
 			const globeHeight = 1968 / 2;
 
@@ -44,16 +44,18 @@
 					height
 				} = container.getBoundingClientRect();
 
-				// 1. Setup scene
+				// 1. Setup scene创建场景
 				const scene = new THREE.Scene();
 				// 2. Setup camera
 				const camera = new THREE.PerspectiveCamera(45, width / height);
-				// 3. Setup renderer
+				// 3. Setup renderer渲染实例，用于渲染3d效果
 				const renderer = new THREE.WebGLRenderer({
 					canvas,
 					antialias: true
 				});
 				renderer.setSize(width, height);
+				//背景颜色
+				// renderer.setClearColor(0x00FFFF, .5)
 				// 4. Add points to canvas
 				// - Single geometry to contain all points.
 				const mergedGeometry = new THREE.Geometry();
