@@ -10,6 +10,23 @@ import * as echarts from 'echarts'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import dataV from '@jiaminghi/data-view'
+import VueDarkMode from "@growthbunker/vuedarkmode"
+
+Vue.use(VueDarkMode, {
+  // Specify the theme to use: dark or light (dark by default).
+  theme: "dark",
+
+  // Specify the components to declare globally in your project
+  // When undefined, null or given an empty array, all components will be imported
+  components: [
+    // Base components
+    "alert", "avatar", "badge", "button", "divider", "heading", "icon",  "progress-bar",  "spinner", "div",
+
+    // Field components
+    "checkbox", "file", "image-uploader", "input", "input-numeric", "label", "message", "radios", "select", "tabs", "textarea", "toggle"
+  ]
+});
+
 Vue.use(dataV)
 Vue.use(ElementUI);
 Vue.prototype.$echarts = echarts;

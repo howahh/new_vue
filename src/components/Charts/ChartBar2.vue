@@ -24,14 +24,14 @@
 			this.chart = new Chart(ctx, {
 				type: "bar",
 				data: {
-					labels: ['16-20', '21-25', '26-30', '31-36', '36-42', '42+'],
+					labels: ['第一天', '第二天', '第三天', '第四天', '第五天', '第六天', '第七天'],
 					datasets: [{
-						label: "Sales by age",
+						label: "任务数量",
 						weight: 5,
 						borderWidth: 0,
 						borderRadius: 4,
-						backgroundColor: '#141414',
-						data: [15, 20, 12, 60, 20, 15],
+						backgroundColor: '#B37FEB',
+						data: [8, 2, 7, 3, 5, 1, 0],
 						fill: false,
 						maxBarThickness: 35
 					}],

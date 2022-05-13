@@ -1,14 +1,17 @@
 <template>
-  <a-card>
-      <el-row :gutter="20">
-        <el-col :span="12">
-          <add-spider />
-        </el-col>
-        <el-col :span="12">
-          <img src="../assets/img/spider.png" alt="" />
-        </el-col>
-      </el-row>
-  </a-card>
+  <div>
+    <div>
+      <a-button type="primary" @click="showModal">
+        Open Modal with customized footer
+      </a-button>
+      <a-modal v-model="visible" title="Title" on-ok="handleOk">
+        <template slot="footer">
+          <a-button key="back" @click="handleCancel"> 取消 </a-button>
+        </template>
+        <add-spider />
+      </a-modal>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -19,8 +22,28 @@ export default {
   components: {
     AddSpider,
   },
-  setup() {}
-}
+  data() {
+    return {
+      loading: false,
+      visible: false,
+    };
+  },
+  methods: {
+    showModal() {
+      this.visible = true;
+    },
+    handleOk(e) {
+      this.loading = true;
+      setTimeout(() => {
+        this.visible = false;
+        this.loading = false;
+      }, 3000);
+    },
+    handleCancel(e) {
+      this.visible = false;
+    },
+  },
+};
 </script>
 
 <style>

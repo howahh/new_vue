@@ -11,12 +11,9 @@
         :hoverable="true"
       >
         <QAWelcome />
-        <!-- <Conversation :ques="ques" :ans="ans" />
-        <Conversation :ques="ques" :ans="ans" />
-        <Conversation :ques="ques" :ans="ans" /> -->
         <transition-group tag="">
-          <div v-for="num in this.count_list" :key="num">
-            <Conversation :words="conv[num].words" :flag="conv[num].flag" />
+          <div v-for="item, index in this.conv" :key="item+index">
+            <Conversation :words="item.words" :flag="item.flag" />
           </div>
         </transition-group>
 
@@ -38,19 +35,13 @@
 <script>
 import Conversation from "../components/Conversation.vue";
 import QAWelcome from "../components/QAWelcome.vue";
-import QuesConv from "../components/QuesConv.vue";
-import AnsConv from "../components/AnsConv.vue";
 export default {
-  components: { Conversation, QAWelcome, QuesConv, AnsConv },
+  components: { Conversation, QAWelcome, },
 
   data() {
     return {
       value: "",
       conv: [],
-      ques: [],
-      ans: [],
-      count: 0,
-      count_list: [],
     };
   },
 
@@ -66,12 +57,6 @@ export default {
         flag: 1,
         words: que,
       });
-      console.log("flag1:", this.conv.length);
-      this.count_list.push(this.count);
-      this.count += 1;
-      // console.log(this.ques);
-      // console.log(this.count);
-      // this.count.push(this.count.length);
       this.axios
         .post("http://localhost:5000/apiRequestSender/query/QASystem", {
           param: que,
@@ -82,12 +67,11 @@ export default {
             temp = temp.slice(0, 400);
             temp += "...<br/>您还可以访问我们的知识图谱页面查看更多信息。";
           }
-          this.ans.push(temp);
           this.conv.push({
             words: temp,
             flag: 0,
           });
-          console.log("flag0:", this.conv.length);
+          
           // console.log(response.data.data.str);
         });
     },

@@ -17,7 +17,7 @@
     :style="{ backgroundColor: 'transparent' }"
   >
     <div class="brand">
-      <img src="images/logo-ct-black.png" alt="" /> <span>Muse Dashboard</span>
+      <img src="images/logo-ct-black.png" alt="" /> <span>知识产权侵权溯源系统</span>
     </div>
     <hr />
 
