@@ -36,13 +36,13 @@ export default {
   methods: {
    async getState() {
       this.mapData = await this.axios.get(
-        "http://localhost:3000/map/world.json"
+        "http://localhost:8080/map/world.json"
       );
       this.nameMap = await this.axios.get(
-        "http://localhost:3000/map/mapChinaName.json"
+        "http://localhost:8080/map/mapChinaName.json"
       );
       this.chinaData = await this.axios.get(
-        "http://localhost:3000/map/USA_geo.json"
+        "http://localhost:8080/map/USA_geo.json"
       );
       this.initChart();
       this.update();
