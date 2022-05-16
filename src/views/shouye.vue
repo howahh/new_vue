@@ -28,9 +28,10 @@
         </a-row>
       </a-col>
       <a-col :span="14">
-        <a-card class="map mb-24">
-          <WidgetGlobe></WidgetGlobe>
-        </a-card>
+        <!-- <a-card class="map mb-24"> -->
+          <!-- <WidgetGlobe></WidgetGlobe> -->
+          <Mymap></Mymap>
+        <!-- </a-card> -->
       </a-col>
     </a-row>
     <a-row>
@@ -175,6 +176,8 @@ import CardBarChart from "../components/Cards/CardBarChart";
 import Lines from "../components/MyCharts/Lines";
 import CardLineChart from "../components/Cards/CardLineChart.vue";
 import WidgetGlobe from "../components/Widgets/WidgetGlobe";
+import Mymap from "../components/Mymap";
+
 
 export default {
   components: {
@@ -182,6 +185,7 @@ export default {
     CardBarChart,
     CardLineChart,
     WidgetGlobe,
+    Mymap,
   },
 
   data() {return{
