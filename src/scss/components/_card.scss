@@ -234,10 +234,10 @@
 }
 
 .card-profile-head {
-	margin: -53px 0px 24px;
+	margin: -53px 0px 0px;
 
 	@media( min-width: $lg ){
-		margin: -53px 24px 24px;
+		margin: -53px 0px 0px;
 	}
 
 	.ant-card-head {

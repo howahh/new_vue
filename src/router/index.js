@@ -60,6 +60,7 @@ let routes = [
 	{
 		path: '/eventresult',
 		name: '任务结果',
+		
 		layout: "dashboard",
 		// route level code-splitting
 		// this generates a separate chunk (about.[hash].js) for this route
@@ -67,6 +68,7 @@ let routes = [
 		meta: {
 			title: '任务结果',
 			sidebarMap: ['dashboards'],
+			layoutClass: 'layout-profile',
 			breadcrumbs: ['数据分析任务', '任务结果'],
 		},
 		component: () => import(/* webpackChunkName: "dashboard" */ '../views/EventResult.vue'),

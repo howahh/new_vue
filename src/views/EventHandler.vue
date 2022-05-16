@@ -22,6 +22,13 @@
             <h6>过去十天爬虫运行情况</h6>
             <p>今日爬虫运行数量 <span class="text-danger">-1</span></p>
           </template>
+                    <template #extra>
+            <a-badge
+              color="secondary"
+              class="badge-dot-secondary"
+              text="爬虫运行数量"
+            />
+          </template>
           <ChartBar></ChartBar> </a-card
       ></a-col>
       <a-col :span="12">
@@ -35,6 +42,11 @@
               color="primary"
               class="badge-dot-primary"
               text="侵权网站"
+            />
+            <a-badge
+              color="primary"
+              class="badge-dot-secondary"
+              text="侵权电影"
             />
           </template>
           <myChartLine :height="310" :data="lineChartData"></myChartLine>
@@ -268,30 +280,6 @@ export default {
       visible: false,
       length: 0,
       jobs: 0,
-      // lineSpiderData: {
-      //   labels: [
-      //     "第一天",
-      //     "第二天",
-      //     "第三天",
-      //     "第四天",
-      //     "第五天",
-      //     "第六天",
-      //     "第七天",
-      //   ],
-      //   datasets: [
-      //     {
-      //       label: "侵权电影网站数量",
-      //       // yAxisID: "A",
-      //       tension: 0.4,
-      //       borderWidth: 0,
-      //       pointRadius: 0,
-      //       borderColor: "#1890FF",
-      //       borderWidth: 3,
-      //       data: [6, 2, 4, 5, 0, 1, 7, 1, 0],
-      //       maxBarThickness: 6,
-      //     },
-      //   ],
-      // },
       lineChartData: {
         labels: [
           "第一天",
@@ -311,9 +299,7 @@ export default {
             pointRadius: 0,
             borderColor: "#1890FF",
             borderWidth: 3,
-            data: [
-              20366, 21150, 21802, 21870, 22835, 23395, 23587,
-            ],
+            data: [20366, 21150, 21802, 21870, 22835, 23395, 23587],
             maxBarThickness: 6,
           },
           {
@@ -325,8 +311,7 @@ export default {
             borderColor: "#B37FEB",
             borderWidth: 3,
             data: [
-              2017159, 2019794, 2030030, 2106558, 2143017,
-              2238699, 2258271,
+              2017159, 2019794, 2030030, 2106558, 2143017, 2238699, 2258271,
             ],
             maxBarThickness: 6,
           },
