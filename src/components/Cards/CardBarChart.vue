@@ -46,7 +46,7 @@
 			return {
 				// Data for bar chart.
 				barChartData: {
-					labels: ["12月", "1月", "2月", "3月", "4月", "5月"],
+					labels: ["1月", "2月", "3月", "4月", "5月", "6月"],
 					datasets: [{
 						label: "Sales",
 						backgroundColor: '#fff',
