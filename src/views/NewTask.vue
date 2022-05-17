@@ -1,16 +1,29 @@
 <template>
   <div>
-    <div>
-      <a-button type="primary" @click="showModal">
-        Open Modal with customized footer
-      </a-button>
-      <a-modal v-model="visible" title="Title" on-ok="handleOk">
-        <template slot="footer">
-          <a-button key="back" @click="handleCancel"> 取消 </a-button>
-        </template>
-        <add-spider />
-      </a-modal>
-    </div>
+    <a-row :gutter="24" class="mb-24">
+      <a-col :span="8">
+        <a-card style="height: 300px"></a-card>
+      </a-col>
+      <a-col :span="16">
+        <a-card style="height: 300px"></a-card>
+      </a-col>
+    </a-row>
+    <a-row :gutter="24" class="mb-24">
+      <a-col :span="12">
+        <a-card style="height: 300px"></a-card>
+      </a-col>
+      <a-col :span="12">
+        <a-card style="height: 300px"></a-card>
+      </a-col>
+    </a-row>
+    <a-row :gutter="24" class="mb-24">
+      <a-col :span="18">
+        <a-card style="height: 500px"></a-card>
+      </a-col>
+      <a-col :span="6">
+        <a-card style="height: 500px"></a-card>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
