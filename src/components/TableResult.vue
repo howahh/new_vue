@@ -1,93 +1,85 @@
 <template>
-  <div>
-    <a-table
-      :columns="columns"
-      :row-key="(record) => record.host"
-      :data-source="data"
-      :pagination="false"
-      :scroll="{ y: 330 }"
-      :loading="loading"
-      @change="handleTableChange"
-    >
-      <template slot="name" slot-scope="name">
-        {{ name.first }} {{ name.last }}
-      </template>
-    </a-table>
+  <div
+    v-infinite-scroll="handleInfiniteOnLoad"
+    class="demo-infinite-container"
+    :infinite-scroll-disabled="busy"
+    :infinite-scroll-distance="10"
+  >
+    <a-list :data-source="data">
+      <a-list-item slot="renderItem" slot-scope="item">
+        <a-list-item-meta :description="item.host">
+          <a slot="title" href="http://www.baidu.com">{{ item.title }}</a>
+          <a-avatar
+            slot="avatar"
+            :src="url"
+          />
+        </a-list-item-meta>
+        <!-- <div>Content</div> -->
+      </a-list-item>
+      <div v-if="loading && !busy" class="demo-loading-container">
+        <a-spin />
+      </div>
+    </a-list>
   </div>
 </template>
-
 <script>
-import axios from "axios";
-
-const queryData = () => {
-  return axios.post("http://localhost:5000/vpw/getVpwHaveMovieAndInfo");
-};
-const columns = [
-  {
-    title: "域名",
-    dataIndex: "host",
-    // sorter: true,
-    width: "50%",
-    // scopedSlots: { customRender: "name" },
-  },
-  {
-    title: "网站标题",
-    dataIndex: "title",
-    width: "50%",
-    // filters: [
-    //   { text: "Male", value: "male" },
-    //   { text: "Female", value: "female" },
-    // ],
-    // width: "20%",
-  },
-  //   {
-  //     title: "Email",
-  //     dataIndex: "email",
-  //   },
-];
-
+import movieURL from "../assets/img/movie.png"
+import infiniteScroll from "vue-infinite-scroll";
+const fakeDataUrl =
+  "https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo";
 export default {
+  directives: { infiniteScroll },
   data() {
     return {
       data: [],
-    //   pagination: {},
       loading: false,
-      columns,
+      count: 0,
+      busy: false,
+      url: movieURL,
     };
   },
-  mounted() {
-    this.fetch();
+  beforeMount() {
+    this.fetchData();
   },
   methods: {
-    handleTableChange(pagination, filters, sorter) {
-      console.log(pagination);
-      const pager = { ...this.pagination };
-      pager.current = pagination.current;
-    //   this.pagination = pager;
-      this.fetch({
-        // results: pagination.pageSize,
-        // page: pagination.current,
-        sortField: sorter.field,
-        sortOrder: sorter.order,
-        ...filters,
-      });
+    async fetchData(callback) {
+      await this.axios
+        .post("http://localhost:5000/vpw/getVpwHaveMovieAndInfo")
+        .then((response) => {
+          for (var i = 0; i < 15; i++) {
+            this.data.push(response.data.data[this.count * 15 + i]);
+          }
+          this.count += 1;
+        });
     },
-    fetch(params = {}) {
+    handleInfiniteOnLoad() {
+      const data = this.data;
       this.loading = true;
-      queryData().then(({ data }) => {
-        // const pagination = { ...this.pagination };
-        // Read total count from server
-        // pagination.total = data.totalCount;
-        // pagination.total = 200;
+      if (data.length > 500) {
+        this.$message.warning("没有更多了~");
+        this.busy = true;
         this.loading = false;
-        console.log("data:", data);
-        this.data = data.data.slice(0, 50);
-        // this.pagination = pagination;
+        return;
+      }
+      this.fetchData((res) => {
+        this.loading = false;
       });
     },
   },
 };
 </script>
-
 <style>
+.demo-infinite-container {
+  /* border: 1px solid #e8e8e8; */
+  /* border-radius: 4px; */
+  overflow: auto;
+  padding: 8px 24px;
+  height: 380px;
+}
+.demo-loading-container {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  text-align: center;
+}
 </style>
