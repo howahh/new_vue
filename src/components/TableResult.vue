@@ -8,11 +8,17 @@
     <a-list :data-source="data">
       <a-list-item slot="renderItem" slot-scope="item">
         <a-list-item-meta :description="item.host">
-          <a slot="title" href="http://www.baidu.com">{{ item.title }}</a>
-          <a-avatar
-            slot="avatar"
-            :src="url"
-          />
+          <a
+            slot="title"
+            :href="
+              'http://localhost:8080/#/newtask?host=' +
+              item.host +
+              '&task=' +
+              task
+            "
+            >{{ item.title }}</a
+          >
+          <a-avatar slot="avatar" :src="url" />
         </a-list-item-meta>
         <!-- <div>Content</div> -->
       </a-list-item>
@@ -23,12 +29,13 @@
   </div>
 </template>
 <script>
-import movieURL from "../assets/img/movie.png"
+import movieURL from "../assets/img/movie.png";
 import infiniteScroll from "vue-infinite-scroll";
 const fakeDataUrl =
   "https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo";
 export default {
   directives: { infiniteScroll },
+  props: {taskName:String,},
   data() {
     return {
       data: [],
@@ -36,9 +43,11 @@ export default {
       count: 0,
       busy: false,
       url: movieURL,
+      task: this.taskName,
     };
   },
   beforeMount() {
+    console.log("1:",this.task);
     this.fetchData();
   },
   methods: {
