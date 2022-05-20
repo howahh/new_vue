@@ -64,7 +64,8 @@
 			<a-col :span="24" :lg="14" class="mb-24">
 				
 				<!-- Sales Overview Card -->
-				<CardLineChart></CardLineChart>
+				<!-- <CardLineChart></CardLineChart> -->
+				<NeoVisTest></NeoVisTest>
 				<!-- / Sales Overview Card -->
 
 			</a-col>
@@ -91,6 +92,8 @@
 
 	// Information card 1.
 	import CardInfo from '../../components/Cards/CardInfo' ;
+	
+	import NeoVisTest from '../../components/NeoVisTest.vue'
 
 	// Counter Widgets stats
 	const stats = [
@@ -149,6 +152,7 @@
 			CardLineChart,
 			WidgetCounter,
 			CardInfo,
+			NeoVisTest,
 		},
 		data() {
 			return {

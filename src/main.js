@@ -11,7 +11,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import dataV from '@jiaminghi/data-view'
 import VueDarkMode from "@growthbunker/vuedarkmode"
-
+// import NeoVis from 'neovis.js';
 Vue.use(VueDarkMode, {
   // Specify the theme to use: dark or light (dark by default).
   theme: "dark",
@@ -32,6 +32,7 @@ Vue.use(ElementUI);
 Vue.prototype.$echarts = echarts;
 Vue.use(VueAxios,axios);
 Vue.use(Antd);
+// Vue.use(NeoVis)
 
 // Photoswipe Gallery
 import Photoswipe from 'vue-pswipe'
