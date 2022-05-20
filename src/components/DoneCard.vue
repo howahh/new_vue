@@ -80,7 +80,7 @@ export default {
         })
     },
     routeTo(){
-        this.$router.push('/eventresult')
+        this.$router.push('/eventresult?task='+this.TaskName);
     }
   }
 };

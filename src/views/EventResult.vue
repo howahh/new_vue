@@ -137,7 +137,7 @@
             <h6>侵权网站信息</h6>
             <p>点击可查看详细信息</p>
           </template>
-          <TableResult />
+          <TableResult v-if="this.taskStatus" :taskName="this.taskName"/>
         </a-card>
       </a-col>
     </a-row>
@@ -193,10 +193,14 @@ export default {
         "本次任务最多出现地理位置： 美国 值得注意",
       ],
       isScoll : "",
+      taskName: "",
+      taskStatus: false,
     };
   },
 
   beforeMount() {
+    this.taskName = this.$route.query.task;
+    this.taskStatus = true;
     var temp = this.results.slice();
     for (var j = 0; j < 10; j++) {
       for (var i = 0; i < temp.length; i++) {
