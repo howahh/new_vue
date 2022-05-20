@@ -184,7 +184,9 @@
         </a-card>
       </a-col>
       <a-col :span="10">
-        <a-card class="third-line"> 123 </a-card>
+        <a-card class="third-line">
+          <IndexRoll></IndexRoll>
+        </a-card>
       </a-col>
     </a-row>
   </div>
@@ -197,6 +199,7 @@ import CardLineChart from "../components/Cards/CardLineChart.vue";
 import WidgetGlobe from "../components/Widgets/WidgetGlobe";
 import Mymap from "../components/Mymap";
 import BarsForDash from "../components/BarsForDash";
+import IndexRoll from "../components/IndexRoll"
 
 export default {
   components: {
@@ -206,11 +209,12 @@ export default {
     WidgetGlobe,
     Mymap,
     BarsForDash,
+    IndexRoll,
   },
 
   data() {
     return {
-      ciycle_width: 8,
+      ciycle_width:8,
     };
   },
   methods: {},
@@ -218,12 +222,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/* .smchart {
-  height: 230px;
-  margin-bottom: 12px;
-  box-shadow: 3;
-  background-image: blue;
-} */
+
 .first-line {
   height: 120px;
 }
@@ -240,4 +239,5 @@ export default {
 .map::v-deep {
   height: 580px;
 }
+
 </style>
