@@ -3,8 +3,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-let routes = [
-	{
+let routes = [{
 		// will match everything
 		path: '*',
 		component: () => import('../views/404.vue'),
@@ -27,7 +26,7 @@ let routes = [
 			sidebarMap: ['dashboards'],
 			breadcrumbs: ['态势感知'],
 		},
-		component: () => import(/* webpackChunkName: "dashboard" */ '../views/shouye.vue'),
+		component: () => import( /* webpackChunkName: "dashboard" */ '../views/shouye.vue'),
 	},
 	{
 		path: '/eventhandler',
@@ -41,7 +40,7 @@ let routes = [
 			sidebarMap: ['dashboards'],
 			breadcrumbs: ['数据采集任务', '采集任务概览'],
 		},
-		component: () => import(/* webpackChunkName: "dashboard" */ '../views/EventHandler.vue'),
+		component: () => import( /* webpackChunkName: "dashboard" */ '../views/EventHandler.vue'),
 	},
 	{
 		path: '/websiteresult',
@@ -55,12 +54,12 @@ let routes = [
 			sidebarMap: ['dashboards'],
 			breadcrumbs: ['数据分析结果', '网站分析结果'],
 		},
-		component: () => import(/* webpackChunkName: "dashboard" */ '../views/WebsiteResult.vue'),
+		component: () => import( /* webpackChunkName: "dashboard" */ '../views/WebsiteResult.vue'),
 	},
 	{
 		path: '/eventresult',
 		name: '采集任务结果',
-		
+
 		layout: "dashboard",
 		// route level code-splitting
 		// this generates a separate chunk (about.[hash].js) for this route
@@ -71,8 +70,8 @@ let routes = [
 			layoutClass: 'layout-profile',
 			breadcrumbs: ['数据分析结果', '采集任务结果'],
 		},
-		component: () => import(/* webpackChunkName: "dashboard" */ '../views/EventResult.vue'),
-	},	{
+		component: () => import( /* webpackChunkName: "dashboard" */ '../views/EventResult.vue'),
+	}, {
 		path: '/taskstatus',
 		name: '任务处理状态',
 		layout: "dashboard",
@@ -84,8 +83,8 @@ let routes = [
 			sidebarMap: ['dashboards'],
 			breadcrumbs: ['数据采集引擎', '任务处理状态'],
 		},
-		component: () => import(/* webpackChunkName: "dashboard" */ '../views/TaskStatus.vue'),
-	},	{
+		component: () => import( /* webpackChunkName: "dashboard" */ '../views/TaskStatus.vue'),
+	}, {
 		path: '/AIQA',
 		name: '智能问答系统',
 		layout: "dashboard",
@@ -97,7 +96,47 @@ let routes = [
 			sidebarMap: ['dashboards'],
 			breadcrumbs: ['智能问答系统'],
 		},
-		component: () => import(/* webpackChunkName: "dashboard" */ '../views/AIQA.vue'),
+		component: () => import( /* webpackChunkName: "dashboard" */ '../views/AIQA.vue'),
+	},
+	{
+		path: '/websitetrace',
+		name: '网站追踪溯源',
+		layout: "dashboard",
+		// route level code-splitting
+		// this generates a separate chunk (about.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		meta: {
+			title: '网站追踪溯源',
+			sidebarMap: ['dashboards'],
+			breadcrumbs: ['溯源查证系统', '网站追踪溯源'],
+		},
+		component: () => import( /* webpackChunkName: "dashboard" */ '../views/WebsiteTrace.vue'),
+	},
+	{
+		path: '/websiteevidence',
+		name: '网站查证系统',
+		layout: "dashboard",
+		// route level code-splitting
+		// this generates a separate chunk (about.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		meta: {
+			title: '网站查证系统',
+			sidebarMap: ['dashboards'],
+			breadcrumbs: ['溯源查证系统', '网站查证系统'],
+		},
+		component: () => import( /* webpackChunkName: "dashboard" */ '../views/WebsiteEvidence.vue'),
+	},
+
+	{
+		path: '/login',
+		name: '登录',
+		meta: {
+			layoutClass: 'layout-sign-up',
+			title: 'Basic Sign Up',
+			sidebarMap: ['authentication', 'sign-up', 'basic'],
+			breadcrumbs: ['Authentication', 'Sign Up', 'Basic'],
+		},
+		component: () => import('../views/Authentication/Sign-Up/Basic.vue'),
 	},
 
 	// ------------------------------
@@ -113,7 +152,7 @@ let routes = [
 			sidebarMap: ['dashboards'],
 			breadcrumbs: ['Dashboards', 'Default'],
 		},
-		component: () => import(/* webpackChunkName: "dashboard" */ '../views/Dashboards/Default.vue'),
+		component: () => import( /* webpackChunkName: "dashboard" */ '../views/Dashboards/Default.vue'),
 	},
 	{
 		path: '/dashboards/crm',
@@ -406,26 +445,24 @@ let routes = [
 
 // Adding layout property from each route to the meta
 // object so it can be accessed later.
-function addLayoutToRoute( route, parentLayout = "default" )
-{
-	route.meta = route.meta || {} ;
-	route.meta.layout = route.layout || parentLayout ;
-	
-	if( route.children )
-	{
-		route.children = route.children.map( ( childRoute ) => addLayoutToRoute( childRoute, route.meta.layout ) ) ;
+function addLayoutToRoute(route, parentLayout = "default") {
+	route.meta = route.meta || {};
+	route.meta.layout = route.layout || parentLayout;
+
+	if (route.children) {
+		route.children = route.children.map((childRoute) => addLayoutToRoute(childRoute, route.meta.layout));
 	}
-	return route ;
+	return route;
 }
 
-routes = routes.map( ( route ) => addLayoutToRoute( route ) ) ;
+routes = routes.map((route) => addLayoutToRoute(route));
 
 const router = new VueRouter({
 	mode: 'hash',
 	base: process.env.BASE_URL,
 	routes,
-	scrollBehavior (to, from, savedPosition) {
-		if ( to.hash ) {
+	scrollBehavior(to, from, savedPosition) {
+		if (to.hash) {
 			return {
 				selector: to.hash,
 				behavior: 'smooth',

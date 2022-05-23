@@ -50,7 +50,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .place-holder {
   height: 200px;
   border-radius: 5px;

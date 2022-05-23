@@ -17,7 +17,8 @@
     :style="{ backgroundColor: 'transparent' }"
   >
     <div class="brand">
-      <img src="images/logo-ct-black.png" alt="" /> <span>知识产权侵权溯源系统</span>
+      <img src="images/logo-ct-black.png" alt="" />
+      <span>知识产权侵权溯源系统</span>
     </div>
     <hr />
 
@@ -125,6 +126,27 @@
           <span class="label">智能问答系统</span>
         </router-link>
       </a-menu-item>
+
+      <a-sub-menu key="data_find" style="padding: 0">
+        <span slot="title">
+          <span class="icon">
+            <a-icon type="dashboard" theme="filled" class="m-0" />
+          </span>
+          <span class="label">溯源查证系统</span>
+        </span>
+        <a-menu-item-group>
+          <a-menu-item>
+            <router-link to="/websitetrace">
+              <span class="label">网站追踪溯源</span>
+            </router-link>
+          </a-menu-item>
+          <a-menu-item>
+            <router-link to="/websiteevidence">
+              <span class="label">网站查证系统</span>
+            </router-link>
+          </a-menu-item>
+        </a-menu-item-group>
+      </a-sub-menu>
 
       <!-- ------------------------------------------ -->
       <!-- <a-sub-menu key="dashboards" style="padding: 0">
