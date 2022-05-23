@@ -20,17 +20,18 @@ Vue.use(VueDarkMode, {
   // When undefined, null or given an empty array, all components will be imported
   components: [
     // Base components
-    "alert", "avatar", "badge", "button", "divider", "heading", "icon",  "progress-bar",  "spinner", "div",
+    "alert", "avatar", "badge", "button", "divider", "heading", "icon", "progress-bar", "spinner", "div",
 
     // Field components
     "checkbox", "file", "image-uploader", "input", "input-numeric", "label", "message", "radios", "select", "tabs", "textarea", "toggle"
   ]
 });
-
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
 Vue.use(dataV)
 Vue.use(ElementUI);
 Vue.prototype.$echarts = echarts;
-Vue.use(VueAxios,axios);
+Vue.use(VueAxios, axios);
 Vue.use(Antd);
 // Vue.use(NeoVis)
 
