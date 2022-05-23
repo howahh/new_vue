@@ -52,7 +52,7 @@
               />
             </svg>
           </span>
-          <span class="label">我的首页</span>
+          <span class="label">系统态势感知</span>
         </router-link>
       </a-menu-item>
 
@@ -61,17 +61,17 @@
           <span class="icon">
             <a-icon type="dashboard" theme="filled" class="m-0" />
           </span>
-          <span class="label">数据获取任务</span>
+          <span class="label">数据采集引擎</span>
         </span>
         <a-menu-item-group>
           <a-menu-item>
             <router-link to="/eventhandler">
-              <span class="label">任务概览</span>
+              <span class="label">采集任务概览</span>
             </router-link>
           </a-menu-item>
           <a-menu-item>
-            <router-link to="/newtask">
-              <span class="label">新建任务</span>
+            <router-link to="/taskstatus">
+              <span class="label">任务处理状态</span>
             </router-link>
           </a-menu-item>
         </a-menu-item-group>
@@ -82,17 +82,17 @@
           <span class="icon">
             <a-icon type="dashboard" theme="filled" class="m-0" />
           </span>
-          <span class="label">数据分析任务</span>
+          <span class="label">数据分析结果</span>
         </span>
         <a-menu-item-group>
           <a-menu-item>
             <router-link to="/eventresult">
-              <span class="label">任务结果</span>
+              <span class="label">采集任务结果</span>
             </router-link>
           </a-menu-item>
           <a-menu-item>
-            <router-link to="/taskstatus">
-              <span class="label">任务状态</span>
+            <router-link to="/websiteresult">
+              <span class="label">网站分析结果</span>
             </router-link>
           </a-menu-item>
         </a-menu-item-group>
@@ -127,7 +127,7 @@
       </a-menu-item>
 
       <!-- ------------------------------------------ -->
-      <a-sub-menu key="dashboards" style="padding: 0">
+      <!-- <a-sub-menu key="dashboards" style="padding: 0">
         <span slot="title">
           <span class="icon">
             <a-icon type="dashboard" theme="filled" class="m-0" />
@@ -263,8 +263,8 @@
             </router-link>
           </a-menu-item>
         </a-menu-item-group>
-      </a-sub-menu>
-      <a-sub-menu key="ecommerce" style="padding: 0">
+      </a-sub-menu> -->
+      <!-- <a-sub-menu key="ecommerce" style="padding: 0">
         <span slot="title">
           <span class="icon">
             <a-icon type="dollar-circle" theme="filled" class="m-0" />
@@ -372,7 +372,7 @@
           </span>
           <span class="label">Changelog</span>
         </a>
-      </a-menu-item>
+      </a-menu-item> -->
     </a-menu>
     <!-- / Sidebar Navigation Menu -->
 
