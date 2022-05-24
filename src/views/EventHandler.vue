@@ -53,7 +53,7 @@
         </a-card>
       </a-col>
     </a-row>
-    <a-row :gutter="24">
+    <a-row :gutter="24" style="min-height: 470px">
       <a-col :span="16">
         <a-card class="mb-24 card-table">
           <a-table
@@ -605,6 +605,6 @@ export default {
   height: 400px;
 }
 .card-table {
-  height: 498px;
+  /* height: 498px; */
 }
 </style>
