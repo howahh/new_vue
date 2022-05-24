@@ -108,7 +108,9 @@
         </a-card>
       </a-col>
       <a-col :span="14">
-        <a-card style="height: 664px"> </a-card>
+        <a-card style="height: 664px">
+          <neo-vis-test :site='this.neoflag'></neo-vis-test>
+        </a-card>
       </a-col>
     </a-row>
     <a-row :gutter="24" class="mb-24">
@@ -205,7 +207,11 @@
 </template>
 
 <script>
+import NeoVisTest from '../components/NeoVisTest.vue'
 export default {
+  components:{
+    NeoVisTest
+  },
   data() {
     return {
       selectData: [],
@@ -219,6 +225,7 @@ export default {
       movies1: [],
       movies2: [],
       isScoll: true,
+      neoflag:1
     };
   },
 
@@ -243,11 +250,18 @@ export default {
     onChange(value) {
       this.task = value[0];
       this.host = value[1];
-
       this.getWebsiteData();
       this.getImage();
+      this.changeNeo();
     },
-
+    changeNeo(){
+      if(this.neoflag==1){
+        this.neoflag=2
+      }
+      else if(this.neoflag==2){
+        this.neoflag=1
+      } 
+    },
     ifMovieNotInArray(movie, array) {
       for (var i = 0; i < array.length; i++) {
         if (array[i].toString().search(movie) != -1) {
@@ -313,7 +327,9 @@ export default {
         },
       ];
       this.axios
-        .post("http://localhost:5000/apiRequestSender/query/getTimerRemain")
+        .post("http://localhost:5000/apiRequestSender/query/getTimerRemain",{
+          a:1
+        })
         .then((response) => {
           for (var i = 0; i < response.data.data.length; i++) {
             var json = {

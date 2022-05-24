@@ -1,7 +1,38 @@
 <template>
-  <div class="myViz">
-    <div id="viz" class="neojs" />
-    <a-button @click="this.update">hhh</a-button>
+  <div class="myViz" style="text-align: center">
+    <div class="showif" v-show="this.flag == 1">
+      <div id="viz" class="neojs"></div>
+      <div class="buttons">
+        <a-button @click="this.rerender" style="margin-right: 17px; margin-left:20px "
+          >恢复初始</a-button
+        >
+        <a-button @click="this.update" style="margin-right: 17px"
+          >查看更多</a-button
+        >
+        <a-button @click="this.getCluster" style="margin-right: 17px"
+          >查看分类</a-button
+        >
+        <a-button @click="this.viewCluster" style="margin-right: 17px"
+          >查看该类</a-button
+        >
+        <a-button @click="this.stabilize" style="margin-right: 17px"
+          >固定图谱</a-button
+        >
+        <a-button @click="this.otherMovie" style="margin-right: 17px"
+          >其他网站</a-button
+        >
+      </div>
+    </div>
+    <div v-if="this.flag == 0" style="text-align: center">
+      <a-card
+        :bordered="false"
+        class="dashboard-bar-line header-solid mb-24"
+        style="height: 660px"
+      >
+        <div style="height: 330px"></div>
+        <a-spin />
+      </a-card>
+    </div>
   </div>
 </template>
 
@@ -11,34 +42,68 @@ import * as NeoVis from "neovis.js";
 
 export default {
   components: {},
-  props: {},
+  props: ["site"],
   data() {
     return {
       viz: null, //定义一个viz对象
+      flag: 0,
+      url: "'4kgd.cn'",
     };
   },
+  watch: {
+    site: function (val, old) {
+      console.log("改变了", val, old);
+      if (this.site == 2) {
+        this.url = "'4kwc.com'";
+      }
+      else if(this.site == 1){
+        this.url = "'4kgd.cn'"
+      }
+      console.log("url", this.site);
+      this.draw();
+    },
+  },
   mounted() {
+    if (this.site == 2) {
+      this.url = "'4kwc.com'";
+    }
+    console.log("url", this.site);
     this.draw();
   }, //渲染
   methods: {
-    submit() {
-      var cypher = $("#cypher").val();
-      if (cypher.length > 3) {
-        this.viz.renderWithCypher(cypher);
-        console.log("hhh123");
-      } else {
-        console.log("reload");
-        this.viz.reload();
-      }
-    },
     stabilize() {
       this.viz.stabilize();
     },
+    rerender() {
+      this.viz.renderWithCypher(
+        "MATCH p=(m:Movie)-[:has_movie] -(n:Domain)  WHERE n.name= " +
+          this.url +
+          " RETURN p limit 20"
+      );
+    },
     update() {
-      console.log("hh");
       // this.viz.clearNetwork()
-      this.viz.updateWithCypher(
-        "MATCH p=(m:Movie)-[:has_movie] -(n:Domain)-[r:with_title]-(t:Title),q=(n:Domain)-[:with_IP]-(i:IP)  WHERE n.name='4kgd.cn' RETURN p,q limit 50"
+      this.viz.renderWithCypher(
+        "MATCH p=(m:Movie)-[:has_movie] -(n:Domain)-[r:with_title]-(t:Title),q=(n:Domain)-[:with_IP]-(i:IP)  WHERE n.name= " +
+          this.url +
+          " RETURN p,q limit 30"
+      );
+    },
+    getCluster() {
+      this.viz.renderWithCypher(
+        "MATCH p=(i:IP)-[:with_IP]-(n:Domain)-[r:with_title]-(t:Title),q=(n:Domain)-[:in_cluster]-(c:Cluster) WHERE n.name= " +
+          this.url +
+          " RETURN p,q"
+      );
+    },
+    viewCluster() {
+      this.viz.renderWithCypher(
+        "MATCH p=(c:Cluster)-[:in_cluster]-(n:Domain) WHERE c.name='613' RETURN p"
+      );
+    },
+    otherMovie() {
+      this.viz.renderWithCypher(
+        "MATCH p=(c:Cluster)-[:in_cluster]-(n:Domain)-[:has_movie]-(m:Movie) WHERE c.name='613' RETURN p limit 30"
       );
     },
     draw() {
@@ -58,6 +123,14 @@ export default {
           Domain: {
             caption: "name",
             size: 2,
+            community: "community",
+          },
+          Cluster: {
+            caption: "name",
+            size: 2,
+          },
+          Movie: {
+            size: 1,
           },
         },
         relationships: {
@@ -68,9 +141,10 @@ export default {
         },
         //查询节点的语句，写成你们的
         initial_cypher:
-          "MATCH p=(n)-[r:has_movie]-(I) WHERE  n.name='4kgd.cn' RETURN n limit 45",
+          "MATCH p=(m:Movie)-[:has_movie] -(n:Domain)  WHERE n.name= " +
+          this.url +
+          " RETURN p limit 15",
         // "MATCH p= (n:Cluster)-[:in_cluster]-(Domain)-[:has_movie]-(Movie) RETURN p LIMIT 100"
-
       };
       // this.viz = new NeoVis(config);
       this.viz = new NeoVis.default(config);
@@ -83,7 +157,9 @@ export default {
       const eno4jObject = this.viz;
       that.viz.registerOnEvent("completed", (ab) => {
         // Your after render code here
-        console.log(that.viz.nodes.get({ group:'Domain' }));
+        // this.flag = 1;
+        this.flag = 1;
+
         // /**
         //  * 处理节点拖到问题
         //  */
@@ -116,9 +192,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #viz {
-  height: 400px;
-  width: 400px;
+  height: 610px;
+  width: 100%;
+}
+.buttons {
+  padding: 5px;
+}
+a-button {
+  margin-right: 25px;
 }
 </style>
