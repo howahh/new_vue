@@ -15,7 +15,7 @@ let routes = [{
 	},
 
 	{
-		path: '/shouye',
+		path: '/index',
 		name: '系统态势感知',
 		layout: "dashboard",
 		// route level code-splitting
@@ -24,7 +24,7 @@ let routes = [{
 		meta: {
 			title: '系统态势感知',
 			sidebarMap: ['dashboards'],
-			breadcrumbs: ['态势感知'],
+			breadcrumbs: ['系统态势感知'],
 		},
 		component: () => import( /* webpackChunkName: "dashboard" */ '../views/shouye.vue'),
 	},
@@ -137,6 +137,17 @@ let routes = [{
 			breadcrumbs: ['Authentication', 'Sign Up', 'Basic'],
 		},
 		component: () => import('../views/Authentication/Sign-Up/Basic.vue'),
+	},
+	{
+		path: '/usermanage',
+		name: '用户权限管理',
+		layout: "dashboard",
+		meta: {
+			title: '用户权限管理',
+			sidebarMap: ['dashboards'],
+			breadcrumbs: ['用户权限管理'],
+		},
+		component: () => import('../views/UserManage.vue'),
 	},
 
 	// ------------------------------
