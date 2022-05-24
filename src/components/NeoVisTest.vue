@@ -7,7 +7,7 @@
 
 <script>
 // const NeoVis = require("neovis.js");
-import NeoVis from "neovis.js";
+import * as NeoVis from "neovis.js";
 
 export default {
   components: {},
@@ -36,8 +36,9 @@ export default {
     },
     update() {
       console.log("hh");
-      this.viz.renderWithCypher(
-        "MATCH p=(n)-[r:has_movie]->(I) WHERE  n.name='www.5060w.cc' RETURN p limit 25"
+      // this.viz.clearNetwork()
+      this.viz.updateWithCypher(
+        "MATCH p=(m:Movie)-[:has_movie] -(n:Domain)-[r:with_title]-(t:Title),q=(n:Domain)-[:with_IP]-(i:IP)  WHERE n.name='4kgd.cn' RETURN p,q limit 50"
       );
     },
     draw() {
@@ -67,10 +68,12 @@ export default {
         },
         //查询节点的语句，写成你们的
         initial_cypher:
-          "MATCH p=(n)-[r:has_movie]->(I) WHERE  n.name='4kgd.cn' RETURN p limit 10",
+          "MATCH p=(n)-[r:has_movie]-(I) WHERE  n.name='4kgd.cn' RETURN n limit 45",
+        // "MATCH p= (n:Cluster)-[:in_cluster]-(Domain)-[:has_movie]-(Movie) RETURN p LIMIT 100"
+
       };
       // this.viz = new NeoVis(config);
-      this.viz = new NeoVis(config);
+      this.viz = new NeoVis.default(config);
       this.viz.render();
       const that = this;
       const nodesArray = []; // 动态取出neo4j通过语句查询的节点集群
@@ -80,16 +83,17 @@ export default {
       const eno4jObject = this.viz;
       that.viz.registerOnEvent("completed", (ab) => {
         // Your after render code here
-        console.log(that.viz.nodes.get({ group:"Movie" }));
-        /**
-         * 处理节点拖到问题
-         */
-        // that.viz.network.on('dragEnd', function(params) {
-        //   for (var i = 0; i < params.nodes.length; i++) {
-        //     var nodeId = params.nodes[i]
-        //     eno4jObject.nodes.update({ id: nodeId, fixed: { x: true, y: true }})
-        //     console.log('结束')
-        //   }
+        console.log(that.viz.nodes.get({ group:'Domain' }));
+        // /**
+        //  * 处理节点拖到问题
+        //  */
+        // that.viz.nodes.on('click', function(params) {
+        //   // for (var i = 0; i < params.nodes.length; i++) {
+        //   //   var nodeId = params.nodes[i]
+        //   //   eno4jObject.nodes.update({ id: nodeId, fixed: { x: true, y: true }})
+        //   //   console.log('结束')
+        //   // }
+        //   console.log("click")
         // })
         // eno4jObject.network.on('dragStart', function(params) {
         //   for (var i = 0; i < params.nodes.length; i++) {
