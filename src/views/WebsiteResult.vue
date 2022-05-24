@@ -93,7 +93,19 @@
             </a-descriptions>
           </a-card>
         </div>
-        <a-card class="mb-24" style="height: 320px"></a-card>
+        <a-card
+          style="height: 320px"
+          :bordered="false"
+          class="dashboard-bar-line header-solid mb-24"
+        >
+          <template #title>
+            <h6>网页词云展示</h6>
+          </template>
+          <el-image
+            :src="this.cloud"
+            :preview-src-list="[this.cloud]"
+          ></el-image>
+        </a-card>
       </a-col>
       <a-col :span="14">
         <a-card style="height: 664px"> </a-card>
@@ -283,6 +295,7 @@ export default {
         "http://localhost:5000/apiRequestSender/query/getScreenshot?domain=" +
         image;
       this.imageFlag = true;
+      this.cloud = "http://localhost:5000/apiRequestSender/query/getWordCloud?domain=" + image;
     },
 
     getSelectData() {
@@ -295,8 +308,8 @@ export default {
           label: "4kgd.cn",
         },
         {
-          value: "5dz.cn",
-          label: "5dz.cn",
+          value: "4kwc.com",
+          label: "4kwc.com",
         },
       ];
       this.axios
@@ -372,10 +385,9 @@ th {
   }
 }
 
-#particles-js{
-    width: 100%;
-    height: 100%;
-    position:fixed;
+#particles-js {
+  width: 100%;
+  height: 100%;
+  position: fixed;
 }
-
 </style>

@@ -161,15 +161,16 @@ export default {
               if (response.data.status == 200) {
                 console.log(response);
                 // ElMessage.success(response.data.msg);
-                this.openNotificationSuccess();
+                this.openNotificationSuccess(values.email);
                 localStorage.setItem("ms_username", values.email);
-                this.$router.push("/");
+                this.$router.push("/index");
               } else if (response.data.status == 203) {
                 // ElMessage.warning(response.data.msg);
-				
+				this.openNotificationFail();
                 this.$router.push("/login");
               } else if (response.data.status == 202) {
-                ElMessage.error(response.data.msg);
+                // ElMessage.error(response.data.msg);
+				this.openNotificationFail();
                 this.$router.push("/login");
               }
               console.log(response);
