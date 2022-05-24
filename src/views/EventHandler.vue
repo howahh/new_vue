@@ -96,11 +96,11 @@
               @click="showModal()"
               >新建任务</a-button
             >
-            <a-modal v-model="visible" title="Title" on-ok="handleOk">
+            <a-modal v-model="visible" title="创建新任务" on-ok="handleOk" >
               <template slot="footer">
                 <a-button key="back" @click="handleCancel"> 取消 </a-button>
               </template>
-              <add-spider />
+              <add-spider @changeVisible="setVisible"/>
             </a-modal>
             <a-pagination
               show-quick-jumper
@@ -477,6 +477,10 @@ export default {
     this.fetch();
   },
   methods: {
+    setVisible(){
+      this.visible = false;
+      this.fetch();
+    },
     showModal() {
       this.visible = true;
     },
@@ -523,6 +527,7 @@ export default {
         // Read total count from server
         // pagination.total = data.totalCount;
         pagination.total = 200;
+        this.data = [];
         for (const item in data) {
           this.data.push(data[item]);
         }

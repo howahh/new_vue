@@ -1,21 +1,26 @@
 <template>
   <div>
-    <a-row>
+    <a-row style="min-height: 100px">
       <a-col>
         <a-card
           class="mb-24 card-table dashboard-bar-line header-solid"
-          style="min-height: 100px; padding: 16px"
+          style="padding: 16px"
         >
           <a-button
             style="background-color: rgb(24, 144, 255); color: white"
             @click="showModal"
             >新增用户</a-button
           >
-          <a-modal v-model="visible" title="添加用户" on-ok="handleOk" width="700px">
+          <a-modal
+            v-model="visible"
+            title="添加用户"
+            on-ok="handleOk"
+            width="700px"
+          >
             <template slot="footer">
               <a-button key="back" @click="handleCancel"> 取消 </a-button>
             </template>
-            <new-user></new-user>
+            <new-user @changeVisible="setVisible"></new-user>
           </a-modal>
           <!-- <a-button style="background-color:rgb(24, 144, 255); color:white">用户</a-button> -->
           <a-table
@@ -26,7 +31,7 @@
             :loading="loading"
             @change="handleTableChange"
           >
-            <template slot="操作" slot-scope="text, record">
+            <template slot="operation" slot-scope="text, record">
               <a-popconfirm
                 v-if="data.length"
                 title="确定要删除吗？"
@@ -34,9 +39,29 @@
                 cancel-text="取消"
                 @confirm="() => onDelete(record.email)"
               >
-                <a href="javascript:;">删除</a>
+                <a-button size="small" type="danger">删除</a-button>
               </a-popconfirm>
+              
             </template>
+            <span slot="group" slot-scope="group">
+              <a-tag
+                :color="
+                  group == '管理员'
+                    ? 'red'
+                    : group == '执法监管人员'
+                    ? 'orange'
+                    : 'blue'
+                "
+              >
+                {{ group }}
+              </a-tag>
+            </span>
+            <span slot="ban" slot-scope="ban">
+              <a-tag :color="ban == '可用' ? 'geekblue' : 'gold'">
+                {{ ban }}
+              </a-tag>
+            </span>
+
           </a-table></a-card
         >
       </a-col>
@@ -47,7 +72,7 @@
 
 <script>
 import axios from "axios";
-import NewUser from "../components/NewUser.vue"
+import NewUser from "../components/NewUser.vue";
 const queryData = (params) => {
   return axios.post("http://localhost:5000/user/getUserInPage", {
     start: 0,
@@ -85,12 +110,14 @@ const columns = [
     //   { text: "Male", value: "male" },
     //   { text: "Female", value: "female" },
     // ],
+    scopedSlots: { customRender: "group" },
     width: "15%",
   },
   {
     title: "是否可用",
     dataIndex: "ban",
     sorter: (a, b) => a.ban - b.ban,
+    scopedSlots: { customRender: "ban" },
     // filters: [
     //   { text: "Male", value: "male" },
     //   { text: "Female", value: "female" },
@@ -100,14 +127,14 @@ const columns = [
   {
     title: "操作",
     dataIndex: "operation",
-    scopedSlots: { customRender: "操作" },
+    scopedSlots: { customRender: "operation" },
     width: "20%",
   },
 ];
 
 export default {
-  components:{
-      NewUser
+  components: {
+    NewUser,
   },
   data() {
     return {
@@ -122,6 +149,10 @@ export default {
     this.fetch();
   },
   methods: {
+    setVisible(data) {
+      this.visible = data;
+      this.fetch();
+    },
     showModal() {
       this.visible = true;
     },
@@ -152,6 +183,7 @@ export default {
       console.log(pagination);
       const pager = { ...this.pagination };
       pager.current = pagination.current;
+      pager.defaultPageSize = 10;
       this.pagination = pager;
       this.fetch();
     },
@@ -166,7 +198,21 @@ export default {
         this.data = data.data;
         for (var i = 0; i < this.data.length; i++) {
           this.data[i]["id"] = i + 1;
+          if (this.data[i].group == "normal") {
+            this.data[i].group = "版权拥有者";
+          } else if (this.data[i].group == "super") {
+            this.data[i].group = "执法监管人员";
+          } else if (this.data[i].group == "admin") {
+            this.data[i].group = "管理员";
+          }
+
+          if (this.data[i].ban == "1") {
+            this.data[i].ban = "可用";
+          } else {
+            this.data[i].ban = "已停用";
+          }
         }
+
         console.log(this.data);
         this.pagination = pagination;
       });

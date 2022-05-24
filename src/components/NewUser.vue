@@ -1,11 +1,5 @@
 <template>
-  <a-form-model
-    ref="ruleForm"
-    :model="form"
-    :rules="rules"
-    :label-col="labelCol"
-    :wrapper-col="wrapperCol"
-  >
+  <a-form-model ref="ruleForm" :model="form" :rules="rules">
     <a-form-model-item ref="email" label="邮箱" prop="email">
       <a-input v-model="form.email" placeholder="请输入邮箱..." />
     </a-form-model-item>
@@ -25,7 +19,9 @@
       </a-radio-group>
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
-      <a-button type="primary" @click="onSubmit"> 提交 </a-button>
+      <a-button type="primary" @click="onSubmit" :loading="iconLoading">
+        提交
+      </a-button>
       <a-button style="margin-left: 10px" @click="resetForm"> 重置 </a-button>
     </a-form-model-item>
   </a-form-model>
@@ -34,6 +30,7 @@
 export default {
   data() {
     return {
+      iconLoading: false,
       form: {
         email: "",
         username: "",
@@ -71,8 +68,8 @@ export default {
             // trigger: "change",
           },
           {
-            min:8,
-            max:20,
+            min: 8,
+            max: 20,
             message: "密码长度必须在8-20之间！",
             // trigger: "change",
           },
@@ -93,10 +90,45 @@ export default {
     };
   },
   methods: {
+    message() {
+      this.$notify({
+        title: "新建用户成功",
+        message: "您已经成功新建了一个用户！",
+        type: "success",
+      });
+    },
     onSubmit() {
       this.$refs.ruleForm.validate((valid) => {
+        var form = JSON.parse(JSON.stringify(this.form));
         if (valid) {
-          alert("submit!");
+          this.iconLoading = true;
+          console.log("3");
+          if (form.ban == true) {
+            form.ban = "1";
+          } else {
+            form.ban = "0";
+          }
+          if (form.group == "1") {
+            form.group = "normal";
+          } else {
+            form.group = "super";
+          }
+          var param = {
+            username: form.username,
+            password: form.password,
+            email: form.email,
+            ban: form.ban,
+            group: form.group,
+          };
+          console.log(param);
+          this.axios
+            .post("http://localhost:5000/manage/user/addUser", param)
+            .then((response) => {
+              setTimeout(() => {
+                this.message();
+                this.$emit("changeVisible", false);
+              }, 1000);
+            });
         } else {
           console.log("error submit!!");
           return false;

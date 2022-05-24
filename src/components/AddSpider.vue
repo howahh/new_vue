@@ -211,8 +211,9 @@ export default {
       setTimeout(() => {
         this.iconLoading = false;
         this.message();
-        this.$router.push("/EventHandler");
-      }, 5000);
+        // this.$router.push("/EventHandler");
+        this.$emit("changeVisible", false);
+      }, 6000);
     },
 
     openFullScreen1() {
