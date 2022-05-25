@@ -33,7 +33,9 @@
         <a-card
           class="mb-24 card-table dashboard-bar-line header-solid"
           style="height: 500px"
-        ></a-card>
+        >
+          <NeoForAll></NeoForAll>
+        </a-card>
       </a-col>
       <a-col :span="8">
         <a-card
@@ -97,8 +99,9 @@
 <script>
 import ChartLeft from "../components/TraceChartLeft.vue";
 import ChartRight from "../components/TraceChartRight.vue";
+import NeoForAll from "../components/NeoForAll.vue";
 export default {
-  components: { ChartLeft, ChartRight },
+  components: { ChartLeft, ChartRight, NeoForAll },
   data() {
     return {
       data1: [],
@@ -148,5 +151,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
