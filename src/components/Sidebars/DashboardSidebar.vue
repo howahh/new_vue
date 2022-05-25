@@ -30,7 +30,7 @@
       @openChange="onOpenChange"
     >
       <a-menu-item>
-        <router-link to="/shouye">
+        <router-link to="/index">
           <span class="icon">
             <svg
               width="20"
