@@ -26,7 +26,7 @@ export default {
 
     this.chart = new Chart(ctx, {
       data: {
-        labels: ["1月", "2月", "3月", "4月", "5月", "6月"],
+        labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
         datasets: [
           {
             type: "bar",
@@ -39,7 +39,7 @@ export default {
             backgroundColor: "#1890FF",
             borderRadius: 10,
             borderSkipped: false,
-            data: [523, 403, 225, 401, 520, 550],
+            data: [24, 15, 21, 34, 18, 12],
             maxBarThickness: 20,
           },
           {
@@ -53,7 +53,7 @@ export default {
             backgroundColor: "#B37FEB",
             borderRadius: 10,
             borderSkipped: false,
-            data: [200, 403, 510, 334, 220, 440],
+            data: [9, 30, 32, 36, 21, 9],
             maxBarThickness: 20,
 
           },

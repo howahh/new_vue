@@ -40,7 +40,7 @@ export default {
     this.chart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: ["11月", "12月", "2月", "3月", "4月", "5月"],
+        labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
         datasets: [
           {
             label: "侵权网站",
@@ -51,7 +51,7 @@ export default {
             borderWidth: 3,
             backgroundColor: gradientStroke1,
             fill: true,
-            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+            data: [25718, 21821, 29471, 40281, 26182, 29391],
             maxBarThickness: 6,
           },
           {
@@ -63,7 +63,7 @@ export default {
             borderWidth: 3,
             backgroundColor: gradientStroke2,
             fill: true,
-            data: [100, 90, 40, 340, 290, 280, 140, 30, 200],
+            data: [40291, 39123, 49172, 50192, 40412, 32182],
             maxBarThickness: 6,
           },
         ],

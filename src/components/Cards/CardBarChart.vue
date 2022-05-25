@@ -3,31 +3,6 @@
 	<!-- Active Users Card -->
 	<a-card :bordered="false" class="dashboard-bar-chart">
 		<chart-bar :height="200" :data="barChartData"></chart-bar>
-		<!-- <div class="card-title">
-			<h6>Active Users</h6>
-			<p>than last week <span class="text-success">+23%</span></p>
-		</div>
-		<div class="card-content">
-			<p>We have created multiple options for you to put together and customise into pixel perfect pages.</p>
-		</div>
-		<a-row class="card-footer" type="flex" justify="center" align="top">
-			<a-col :span="6">
-				<h4>3,6K</h4>
-				<span>Users</span>
-			</a-col>
-			<a-col :span="6">
-				<h4>2m</h4>
-				<span>Clicks</span>
-			</a-col>
-			<a-col :span="6">
-				<h4>$772</h4>
-				<span>Sales</span>
-			</a-col>
-			<a-col :span="6">
-				<h4>82</h4>
-				<span>Items</span>
-			</a-col>
-		</a-row> -->
 	</a-card>
 	<!-- Active Users Card -->
 
@@ -46,14 +21,14 @@
 			return {
 				// Data for bar chart.
 				barChartData: {
-					labels: ["1月", "2月", "3月", "4月", "5月", "6月"],
+					labels: ["一月", "二月", "三月", "四月", "五月", "六月"],
 					datasets: [{
-						label: "Sales",
+						label: "侵权次数",
 						backgroundColor: '#fff',
 						borderWidth: 0,
 						borderSkipped: false,
 						borderRadius: 6,
-						data: [850, 600, 500, 620, 900, 500],
+						data: [83274, 66529, 91274, 125923, 78212, 87597],
 						maxBarThickness: 20,
 					}, ],
 				},

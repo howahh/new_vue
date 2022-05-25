@@ -3,15 +3,11 @@
     <a-row :gutter="24">
       <a-col :span="10">
         <a-row>
-          <a-card class="second-line mb-24">
-            <!-- <div class="card-title">
-            <h6>爬取网页数量</h6>
-            <p>本月新增 <span class="text-success">+23%</span></p>
-          </div> -->
+          <a-card :bordered="false" class="dashboard-bar-line header-solid mb-24">
             <template #title style="padding: 5px">
-              <h6>爬取网页数量</h6>
+              <h6>电影被侵权次数</h6>
               <p style="margin-bottom: 0px">
-                本月新增<span class="text-success">+20%</span>
+                本月新增<span class="text-success">+12%</span>
               </p>
             </template>
             <!-- <template #extra>
@@ -157,7 +153,7 @@
       </a-col>
     </a-row>
     <a-row :gutter="24">
-      <a-col :span="14">
+      <a-col :span="13">
         <a-card
           :bordered="false"
           class="header-solid third-line dashboard-bar-line"
@@ -165,8 +161,8 @@
         >
           <template #title>
             <h6>任务运行情况</h6>
-            <p>本月新增<span class="text-success">+32%</span></p>
-            <p>本月新增<span class="text-danger">-3%</span></p>
+            <p>本月新增<span style="color:rgb(0,130,251)">-33%</span></p>
+            <p>本月新增<span style="color:rgb(179,127,235)">-57%</span></p>
           </template>
           <template #extra>
             <a-badge
@@ -183,7 +179,7 @@
           <BarsForDash></BarsForDash>
         </a-card>
       </a-col>
-      <a-col :span="10">
+      <a-col :span="11">
         <a-card class="third-line">
           <IndexRoll></IndexRoll>
         </a-card>
@@ -230,7 +226,7 @@ export default {
   height: 278px;
 }
 .third-line {
-  height: 300px;
+  height: 320px;
 }
 .card-title {
   /* margin-top: 12px; */

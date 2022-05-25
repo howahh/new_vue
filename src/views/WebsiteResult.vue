@@ -114,7 +114,7 @@
       </a-col>
     </a-row>
     <a-row :gutter="24" class="mb-24">
-      <a-col :span="14">
+      <a-col :span="12">
         <div v-if="this.imageFlag == 0" style="text-align: center">
           <a-card
             :bordered="false"
@@ -135,7 +135,6 @@
               <h6>网页取证</h6>
               <p>已添加盲水印</p>
             </template>
-            <br /><br />
             <el-image
               :src="this.image"
               :preview-src-list="[this.image]"
@@ -143,7 +142,7 @@
           </a-card>
         </div>
       </a-col>
-      <a-col :span="10">
+      <a-col :span="12">
         <div v-if="this.infoFlag == 0">
           <a-card
             style="height: 680px; text-align: center"
@@ -192,6 +191,7 @@
               <a-descriptions-item label="侵权电影">
                 <div class="container">
                   <div :class="this.isScoll">
+                    <!-- <div class="scoll"> -->
                     <div v-for="movie in this.movies1" :key="movie">
                       <div>{{ movie }}</div>
                     </div>
@@ -273,7 +273,7 @@ export default {
 
     getMovies1() {
       this.movies1 = [""];
-      console.log(this.movies1);
+      console.log("here",this.movies1);
       this.axios
         .post("http://localhost:5000/movie/getMovieInPage", {
           start: 0,
@@ -282,8 +282,10 @@ export default {
         })
         .then((response) => {
           var pattern = "《(.*?)》";
+          console.log("r",response);
           for (var i = 0; i < response.data.data.length; i++) {
             var result = response.data.data[i].name.match(pattern);
+            console.log("result:", result);
             if (result != null) {
               if (
                 this.ifMovieNotInArray(result[1].split(" ")[0], this.movies1)

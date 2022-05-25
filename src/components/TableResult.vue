@@ -55,8 +55,8 @@ export default {
       await this.axios
         .post("http://localhost:5000/vpw/getVpwHaveMovieAndInfo")
         .then((response) => {
-          for (var i = 0; i < 15; i++) {
-            this.data.push(response.data.data[this.count * 15 + i]);
+          for (var i = 0; i < 10; i++) {
+            this.data.push(response.data.data[this.count * 10 + i]);
           }
           this.count += 1;
         });

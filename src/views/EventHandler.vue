@@ -17,12 +17,16 @@
     </a-row>
     <a-row :gutter="24">
       <a-col :span="12">
-        <a-card :bordered="false" class="dashboard-bar-line header-solid mb-24">
+        <a-card
+          :bordered="false"
+          style="height: 390px"
+          class="dashboard-bar-line header-solid mb-24"
+        >
           <template #title>
             <h6>过去十天爬虫运行情况</h6>
             <p>今日爬虫运行数量 <span class="text-danger">-1</span></p>
           </template>
-                    <template #extra>
+          <template #extra>
             <a-badge
               color="secondary"
               class="badge-dot-secondary"
@@ -32,7 +36,11 @@
           <ChartBar></ChartBar> </a-card
       ></a-col>
       <a-col :span="12">
-        <a-card :bordered="false" class="dashboard-bar-line header-solid mb-24">
+        <a-card
+          :bordered="false"
+          style="height: 390px"
+          class="dashboard-bar-line header-solid mb-24"
+        >
           <template #title>
             <h6>过去十天侵权资源增长情况</h6>
             <p>已发现网站数量 <span class="text-success">+0.8%</span></p>
@@ -96,11 +104,16 @@
               @click="showModal()"
               >新建任务</a-button
             >
-            <a-modal v-model="visible" title="创建新任务" on-ok="handleOk" >
+            <a-modal
+              v-model="visible"
+              width="700px"
+              title="创建新任务"
+              on-ok="handleOk"
+            >
               <template slot="footer">
                 <a-button key="back" @click="handleCancel"> 取消 </a-button>
               </template>
-              <add-spider @changeVisible="setVisible"/>
+              <add-spider @changeVisible="setVisible" />
             </a-modal>
             <a-pagination
               show-quick-jumper
@@ -162,9 +175,21 @@
               <div v-if="this.item.status == 2">
                 <a-button
                   style="background-color: rgb(24, 144, 255); color: white"
+                  @click="showAnalyze()"
                   >分析任务</a-button
                 >
               </div>
+              <a-modal
+                v-model="isAnalyze"
+                width="700px"
+                title="分析任务"
+                on-ok="handleOk"
+              >
+                <NewTask />
+                <template slot="footer">
+                  <a-button key="back" @click="handleCancelTask"> 取消 </a-button>
+                </template>
+              </a-modal>
             </a-descriptions-item>
           </a-descriptions>
           <!-- <div style="margin-top:10px; margin-left:10px;">
@@ -181,15 +206,13 @@
       </a-col>
       <a-col :span="24" :md="6">
         <!-- Next Event card -->
-        <div style="height: 520px; background-color: white">
+        <a-card style="height: 480px; background-color: white">
           <CardNextEvents :data="eventsData" class="mb-24"></CardNextEvents>
-        </div>
+        </a-card>
       </a-col>
     </a-row>
   </div>
 </template>
-
-
 
 <script>
 import axios from "axios";
@@ -203,6 +226,7 @@ import WidgetCounter from "../components/Widgets/WidgetCounter";
 import myChartLine from "../components/Charts/myChartLine";
 import ChartLine from "../components/Charts/ChartLine";
 import ChartBar from "../components/Charts/ChartBar2";
+import NewTask from "../components/TaskForm.vue";
 
 const queryData = (params) => {
   return axios.post("http://localhost:5000/apiRequestSender/query/listJobs");
@@ -256,6 +280,7 @@ const columns = [
 
 export default {
   components: {
+    NewTask,
     AddSpider,
     FullCalendar,
     CardNextEvents,
@@ -266,6 +291,7 @@ export default {
   },
   data() {
     return {
+      isAnalyze: false,
       data: [],
       pagination: {},
       loading: false,
@@ -338,7 +364,7 @@ export default {
           icon: '<i class="el-icon-zoom-in" style="font-size:22px; color:white;"></i>',
         },
         {
-          title: "侵权电影数量",
+          title: "电影侵权次数",
           value: 2258271,
           suffix: "+19572",
           icon: '<i class="el-icon-video-camera" style="font-size:22px; color:white;"></i>',
@@ -347,40 +373,40 @@ export default {
       eventsData: [
         {
           id: "1",
-          title: "Cyber Week",
-          code: "27 May 2022, at 12:30 PM",
+          title: "广度式爬虫",
+          code: "2022 年 06 月 08 日 上午 00:00",
           iconClass: "text-danger",
           icon: "calendar",
           iconBgColor: "rgba(234,6,6,.03)",
         },
         {
           id: "2",
-          title: "Meeting with Marry",
-          code: "24 May 2022, at 10:00 PM",
+          title: "特异性爬虫",
+          code: "2022 年 06 月 10 日 上午 00:00",
           iconClass: "text-primary",
           icon: "bell",
           iconBgColor: "rgba(121,40,202,.03)",
         },
         {
           id: "3",
-          title: "Book Deposit Hall",
-          code: "25 May 2022, at 9:30 AM",
+          title: "广度式爬虫",
+          code: "2022 年 06 月 18 日 上午 00:00",
           iconClass: "text-success",
           icon: "book",
           iconBgColor: "rgba(23,173,55,.03)",
         },
         {
           id: "4",
-          title: "Shipment Deal UK",
-          code: "25 May 2022, at 2:00 PM",
+          title: "广度式爬虫",
+          code: "2022 年 06 月 21 日 上午 00:00",
           iconClass: "text-warning",
           icon: "car",
           iconBgColor: "rgba(245,57,57,.03)",
         },
         {
           id: "5",
-          title: "Verify Dashboard Color Palette",
-          code: "26 May 2022, at 9:00 AM",
+          title: "特异性爬虫",
+          code: "2022 年 06 月 23 日 上午 00:00",
           iconClass: "text-primary",
           icon: "windows",
           iconBgColor: "rgba(33,82,255,.03)",
@@ -396,77 +422,77 @@ export default {
           center: "",
           end: "today prev,next", // will normally be on the right. if RTL, will be on the left
         },
-        initialDate: "2022-05-01",
+        initialDate: "2022-06-01",
         editable: true,
 
         events: [
           {
             title: "广度式爬虫",
-            start: "2022-05-18",
-            end: "2022-05-18",
+            start: "2022-06-18",
+            end: "2022-06-18",
             className: "bg-warning text-dark",
           },
 
           {
             title: "广度式爬虫",
-            start: "2022-05-21",
-            end: "2022-05-22",
+            start: "2022-06-21",
+            end: "2022-06-22",
             className: "bg-warning text-dark",
           },
 
           {
             title: "关键词爬虫",
-            start: "2022-05-29",
-            end: "2022-05-29",
+            start: "2022-06-29",
+            end: "2022-06-29",
             className: "bg-success",
           },
 
           {
             title: "特异性爬虫",
-            start: "2022-05-01",
-            end: "2022-05-01",
+            start: "2022-06-01",
+            end: "2022-06-01",
             className: "bg-primary",
           },
 
           {
             title: "关键词爬虫",
-            start: "2022-05-03",
-            end: "2022-05-03",
+            start: "2022-06-03",
+            end: "2022-06-03",
             className: "bg-success",
           },
 
           {
             title: "广度式爬虫",
-            start: "2022-05-08",
-            end: "2022-05-10",
+            start: "2022-06-08",
+            end: "2022-06-10",
             className: "bg-warning text-dark",
           },
 
           {
             title: "特异性爬虫",
-            start: "2022-05-10",
-            end: "2022-05-10",
+            start: "2022-06-10",
+            end: "2022-06-10",
             className: "bg-primary",
           },
 
           {
             title: "广度式爬虫",
-            start: "2022-05-19",
-            end: "2022-05-19",
+            start: "2022-06-19",
+            end: "2022-06-19",
             className: "bg-warning text-dark",
           },
 
           {
             title: "特异性爬虫",
-            start: "2022-05-23",
-            end: "2022-05-23",
+            start: "2022-06-23",
+            end: "2022-06-23",
             className: "bg-primary",
           },
 
           {
             title: "广度式爬虫",
-            start: "2022-05-02",
-            end: "2022-05-02",
+            start: "2022-06-02",
+            end: "2022-06-02",
             className: "bg-warning text-dark",
           },
         ],
@@ -477,7 +503,13 @@ export default {
     this.fetch();
   },
   methods: {
-    setVisible(){
+    handleCancelTask(e) {
+      this.isAnalyze = false;
+    },
+    showAnalyze() {
+      this.isAnalyze = true;
+    },
+    setVisible() {
       this.visible = false;
       this.fetch();
     },

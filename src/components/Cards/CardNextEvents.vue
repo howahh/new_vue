@@ -6,7 +6,7 @@
     :bodyStyle="{ paddingTop: 0, paddingBottom: 0 }"
   >
     <template #title>
-      <h6 class="font-semibold m-0">Next Events</h6>
+      <h6 class="font-semibold m-0">接下来的数据获取任务</h6>
     </template>
     <a-list
       class="next-events-list"

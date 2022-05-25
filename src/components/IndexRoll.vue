@@ -1,52 +1,55 @@
 <template>
   <div class="place-holder">
-    <div style="height:50px; color:white">
-        <h6 style="padding:6px; ">实时爬取任务</h6>
+    <div style="height: 50px; color: white">
+      <h6 style="padding: 16px">实时爬取任务</h6>
     </div>
-    <div class="scoll-container">
-      <div class="scoll">
-        <div v-for="item in this.title" :key="item">
-          <div>
-            {{ item }}
-            <hr align=center width=500 color=#987cb9 SIZE=1/>
-          </div>
+    <div>
+      <a-carousel autoplay>
+        <div v-for="(data, index) in this.data" :key="index">
+          <a-list :data-source="data">
+            <a-list-item slot="renderItem" slot-scope="item">
+              <a-list-item-meta :description="item.host">
+                <a slot="title">{{ item.title }}</a>
+                <a-avatar slot="avatar" :src="'images/movie.png'" />
+              </a-list-item-meta>
+              <!-- <div>Content</div> -->
+            </a-list-item>
+            <!-- <div v-if="loading && !busy" class="demo-loading-container">
+          <a-spin />
+        </div> -->
+          </a-list>
         </div>
-      </div>
+      </a-carousel>
     </div>
   </div>
 </template>
 
 <script>
-
-
 export default {
   data() {
-      return{
-        title:[]
-    }
-  },
-  methods: {
-      getData() {
-          this.axios
-          .post("http://localhost:5000/vpw/getVpwInPage", {
-          start: 0,
-          count: 100,
-        })
-        .then((response) => {
-          for (var i = 0; i < response.data.data.length; i++) {
-            var temp = response.data.data[i].title;
-            if(temp.length>20){
-                temp = temp.slice(0,20) + '...'
-            }
-            this.title.push(temp);
-          }
-        });
-      }
+    return {
+      title: [],
+      data: [],
+    };
   },
   beforeMount() {
-      this.getData();
+    this.fetchData();
   },
-  
+  methods: {
+    async fetchData(callback) {
+      await this.axios
+        .post("http://localhost:5000/vpw/getVpwHaveMovieAndInfo")
+        .then((response) => {
+          for (var i = 0; i < 5; i++) {
+            var temp = [];
+            temp.push(response.data.data[3 * i]);
+            temp.push(response.data.data[3 * i + 1]);
+            temp.push(response.data.data[3 * i + 2]);
+            this.data.push(temp);
+          }
+        });
+    },
+  },
 };
 </script>
 
