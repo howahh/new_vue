@@ -3,7 +3,6 @@
     <div class="showif" v-show="this.flag == 1">
       <div id="viz" class="neojs"></div>
       <div class="buttons">
-        
         <a-button @click="this.rerender" style="margin-right: 17px; margin-left:20px "
           >恢复初始</a-button
         >
