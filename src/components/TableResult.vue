@@ -11,7 +11,7 @@
           <a
             slot="title"
             :href="
-              'http://localhost:8080/#/newtask?host=' +
+              'http://localhost:8080/#/websiteresult?host=' +
               item.host +
               '&task=' +
               task
