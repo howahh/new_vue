@@ -10,7 +10,7 @@
           style="
             margin-left: 20px;
             margin-top:15px;
-            width: 400px;
+            width: 380px;
             min-height: 20px;
             float: left;
             border-radius: 20px;

@@ -35,7 +35,7 @@ const fakeDataUrl =
   "https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo";
 export default {
   directives: { infiniteScroll },
-  props: {taskName:String,},
+  props: { taskName: String },
   data() {
     return {
       data: [],
@@ -47,7 +47,7 @@ export default {
     };
   },
   beforeMount() {
-    console.log("1:",this.task);
+    console.log("1:", this.task);
     this.fetchData();
   },
   methods: {
@@ -56,6 +56,20 @@ export default {
         .post("http://localhost:5000/vpw/getVpwHaveMovieAndInfo")
         .then((response) => {
           for (var i = 0; i < 10; i++) {
+            if (this.count * 10 + i == 1) {
+              console.log("11111");
+              this.data.push({
+                host: "4kgd.cn",
+                title:
+                  "4K帝国_4K UHD 蓝光原盘电影视频资源 4K电影网盘下载-4kgd.cn",
+              });
+            }
+            if(this.count * 10 + i == 2){
+              this.data.push({
+                host:"4kwc.com",
+                title:"4k王朝_4K UHD 蓝光原盘电影视频资源 4K电影网盘下载-4kwc.com",
+              })
+            }
             this.data.push(response.data.data[this.count * 10 + i]);
           }
           this.count += 1;

@@ -1,24 +1,5 @@
 <template>
   <div>
-    <vue-particles
-      id="particles-js"
-      color="#dedede"
-      :particleOpacity="0.7"
-      :particlesNumber="80"
-      shapeType="circle"
-      :particleSize="4"
-      linesColor="#dedede"
-      :linesWidth="1"
-      :lineLinked="true"
-      :lineOpacity="0.4"
-      :linesDistance="150"
-      :moveSpeed="3"
-      :hoverEffect="true"
-      hoverMode="grab"
-      :clickEffect="true"
-      clickMode="push"
-    >
-    </vue-particles>
     <a-row class="mb-24">
       <a-col :span="24">
         <a-card style="height: 70px; padding: 16px">
@@ -109,7 +90,7 @@
       </a-col>
       <a-col :span="14">
         <a-card style="height: 664px">
-          <neo-vis-test :site='this.neoflag'></neo-vis-test>
+          <neo-vis-test :site="this.neoflag"></neo-vis-test>
         </a-card>
       </a-col>
     </a-row>
@@ -207,10 +188,10 @@
 </template>
 
 <script>
-import NeoVisTest from '../components/NeoVisTest.vue'
+import NeoVisTest from "../components/NeoVisTest.vue";
 export default {
-  components:{
-    NeoVisTest
+  components: {
+    NeoVisTest,
   },
   data() {
     return {
@@ -225,7 +206,7 @@ export default {
       movies1: [],
       movies2: [],
       isScoll: true,
-      neoflag:1
+      neoflag: 1,
     };
   },
 
@@ -254,13 +235,12 @@ export default {
       this.getImage();
       this.changeNeo();
     },
-    changeNeo(){
-      if(this.neoflag==1){
-        this.neoflag=2
+    changeNeo() {
+      if (this.neoflag == 1) {
+        this.neoflag = 2;
+      } else if (this.neoflag == 2) {
+        this.neoflag = 1;
       }
-      else if(this.neoflag==2){
-        this.neoflag=1
-      } 
     },
     ifMovieNotInArray(movie, array) {
       for (var i = 0; i < array.length; i++) {
@@ -273,7 +253,7 @@ export default {
 
     getMovies1() {
       this.movies1 = [""];
-      console.log("here",this.movies1);
+      // console.log("here", this.movies1);
       this.axios
         .post("http://localhost:5000/movie/getMovieInPage", {
           start: 0,
@@ -282,10 +262,10 @@ export default {
         })
         .then((response) => {
           var pattern = "《(.*?)》";
-          console.log("r",response);
+          // console.log("r", response);
           for (var i = 0; i < response.data.data.length; i++) {
             var result = response.data.data[i].name.match(pattern);
-            console.log("result:", result);
+            // console.log("result:", result);
             if (result != null) {
               if (
                 this.ifMovieNotInArray(result[1].split(" ")[0], this.movies1)
@@ -311,7 +291,9 @@ export default {
         "http://localhost:5000/apiRequestSender/query/getScreenshot?domain=" +
         image;
       this.imageFlag = true;
-      this.cloud = "http://localhost:5000/apiRequestSender/query/getWordCloud?domain=" + image;
+      this.cloud =
+        "http://localhost:5000/apiRequestSender/query/getWordCloud?domain=" +
+        image;
     },
 
     getSelectData() {
@@ -320,17 +302,45 @@ export default {
       // console.log(refererCode);
       var temp = [
         {
+          value: "00ysw.com",
+          label: "00ysw.com",
+        },
+        {
           value: "4kgd.cn",
           label: "4kgd.cn",
+        },
+        {
+          value: "1080p.site",
+          label: "1080p.site",
         },
         {
           value: "4kwc.com",
           label: "4kwc.com",
         },
+        {
+          value: "115fhd.com",
+          label: "115fhd.com",
+        },
+        {
+          value: "154.92.22.154",
+          label: "154.92.22.154",
+        },
+        {
+          value: "185.149.23.238",
+          label: "185.149.23.238",
+        },
+        {
+          value: "2046ys.com",
+          label: "2046ys.com",
+        },
+        {
+          value: "258.tv",
+          label: "258.tv",
+        },
       ];
       this.axios
-        .post("http://localhost:5000/apiRequestSender/query/getTimerRemain",{
-          a:1
+        .post("http://localhost:5000/apiRequestSender/query/getTimerRemain", {
+          a: 1,
         })
         .then((response) => {
           for (var i = 0; i < response.data.data.length; i++) {
@@ -372,9 +382,9 @@ export default {
           var day = new Date().getDate() - 2;
           var time = year + "年" + month + "月" + day + "日";
           this.websiteData["detectTime"] = time;
-          console.log(time);
-          console.log(this.websiteData.title);
-          console.log(this.websiteData);
+          // console.log(time);
+          // console.log(this.websiteData.title);
+          // console.log(this.websiteData);
         });
     },
   },

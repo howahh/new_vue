@@ -5,7 +5,7 @@
         style="
           background-color: white;
           width: 100%;
-          min-height: 400px;
+          min-height: 40px;
           border-radius: 20px;
         "
         :hoverable="true"
@@ -17,7 +17,7 @@
           </div>
         </transition-group>
 
-        <div style="margin-top: 100px; margin-left: 100px; margin-right: 100px">
+        <div style="margin-top: 100px; margin-left: 100px; margin-right: 100px; margin-bottom:30px;">
           <a-input-search
             v-model:value="value"
             placeholder="请输入您的问题"
@@ -62,6 +62,7 @@ export default {
           param: que,
         })
         .then((response) => {
+          console.log(response);
           var temp = response.data.data.str;
           if (temp.length > 400) {
             temp = temp.slice(0, 400);

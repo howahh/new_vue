@@ -12,13 +12,13 @@
           style="max-height: 100px"
         ></i> -->
         <a-icon type="schedule" class="grid-con-icon"
-          style="max-height: 100px; margin-left:50px;"/>
+          style="max-height: 100px; margin-left:20px;"/>
       </a-col>
       <a-col
         :span="18"
         style="text-align: center; margin-top: 15px; margin-bottom: 15px"
       >
-        <b style="font-size: 20px">{{ TaskName }}</b>
+        <b style="font-size: 19px">{{ TaskName }}</b>
         <br />
         <br />
         任务状态：已完成
@@ -28,7 +28,7 @@
 
     <a-row style="margin-top: 10px; margin-bottom: 10px; margin-left: 40px">
       <a-button
-        style="background-color: rgb(240, 230, 140, 0.3); margin-left: 25px;"
+        style="background-color: rgb(240, 230, 140, 0.3); margin-left: 5px;"
         @click="deleteTimer(), $emit('func', { TaskName })"
       >
         <!-- <delete-outlined style="font-size: 15px" />  -->

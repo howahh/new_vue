@@ -21,7 +21,7 @@
         :span="18"
         style="text-align: center; margin-top: 15px; margin-bottom: 15px"
       >
-        <b style="font-size: 20px">{{ TaskName }}</b>
+        <b style="font-size: 19px">{{ TaskName }}</b>
         <br />
         <br />
         任务状态：分析中
@@ -31,7 +31,7 @@
 
     <a-row style="margin-top: 10px; margin-bottom: 10px; margin-left: 40px">
       <a-button
-        style="background-color: rgb(127, 255, 170, 0.3); margin-left: 25px"
+        style="background-color: rgb(127, 255, 170, 0.3); margin-left: 5px"
       >
         <!-- <question-circle-outlined  />  -->
         <!-- <QuestionCircleOutlined /> -->

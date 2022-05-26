@@ -37,8 +37,8 @@ export default {
             pointRadius: 2,
             borderWidth: 2,
             backgroundColor: [
-              "rgb(250, 219, 20)",
-              "rgb(82,196,26)",
+              "rgb(255,173,96)",
+              "rgb(150,206,180)",
             //   "#141414",
             //   "#1890FF",
             ],

@@ -1,37 +1,34 @@
 <template>
   <div class="myViz" style="text-align: center">
-    <div class="showif" v-show="this.flag == 1">
+    <div class="showif" v-show="this.flag">
       <div id="viz" class="neojs"></div>
-      <div class="buttons">
-        <a-button @click="this.rerender" style="margin-right: 17px; margin-left:20px "
-          >恢复初始</a-button
-        >
-        <a-button @click="this.update" style="margin-right: 17px"
-          >查看更多</a-button
-        >
-        <a-button @click="this.getCluster" style="margin-right: 17px"
-          >查看分类</a-button
-        >
-        <a-button @click="this.viewCluster" style="margin-right: 17px"
-          >查看该类</a-button
-        >
-        <a-button @click="this.stabilize" style="margin-right: 17px"
-          >固定图谱</a-button
-        >
-        <a-button @click="this.otherMovie" style="margin-right: 17px"
-          >其他网站</a-button
-        >
-      </div>
     </div>
-    <div v-if="this.flag == 0" style="text-align: center">
-      <a-card
-        :bordered="false"
-        class="dashboard-bar-line header-solid mb-24"
-        style="height: 660px"
+
+    <div v-show="this.flag == 0" style="text-align: center; height: 445px">
+      <div style="height: 210px"></div>
+      <a-spin />
+    </div>
+    <div class="buttons" style="height: 219px">
+      <a-button
+        @click="this.rerender"
+        style="margin-right: 17px; margin-left: 20px"
+        >恢复初始</a-button
       >
-        <div style="height: 330px"></div>
-        <a-spin />
-      </a-card>
+      <a-button @click="this.update" style="margin-right: 17px"
+        >查看更多</a-button
+      >
+      <a-button @click="this.getCluster" style="margin-right: 17px"
+        >查看分类</a-button
+      >
+      <a-button @click="this.viewCluster" style="margin-right: 17px"
+        >查看该类</a-button
+      >
+      <a-button @click="this.stabilize" style="margin-right: 17px"
+        >固定图谱</a-button
+      >
+      <a-button @click="this.otherMovie" style="margin-right: 17px"
+        >其他网站</a-button
+      >
     </div>
   </div>
 </template>
@@ -52,14 +49,13 @@ export default {
   },
   watch: {
     site: function (val, old) {
-      console.log("改变了", val, old);
+      // console.log("改变了", val, old);
       if (this.site == 2) {
         this.url = "'4kwc.com'";
+      } else if (this.site == 1) {
+        this.url = "'4kgd.cn'";
       }
-      else if(this.site == 1){
-        this.url = "'4kgd.cn'"
-      }
-      console.log("url", this.site);
+      // console.log("url", this.site);
       this.draw();
     },
   },
@@ -67,23 +63,29 @@ export default {
     if (this.site == 2) {
       this.url = "'4kwc.com'";
     }
-    console.log("url", this.site);
+    // console.log("url", this.site);
     this.draw();
+    setTimeout(() => {
+      this.flag = 1;
+    }, 4000);
   }, //渲染
   methods: {
     stabilize() {
       this.viz.stabilize();
     },
     rerender() {
+      // this.flag = 0;
       this.viz.renderWithCypher(
         "match p=(n:Domain)-[r:in_cluster]-(c:Cluster) return p limit 150"
       );
+      // setTimeout(()=>{
+      //   console.log("1", this.flag);
+      //   this.flag = 1;
+      // }, 10000)
     },
     update() {
       // this.viz.clearNetwork()
-      this.viz.updateWithCypher(
-        "match p=(c:Cluster) return c"
-      );
+      this.viz.updateWithCypher("match p=(c:Cluster) return c");
     },
     getCluster() {
       this.viz.renderWithCypher(
@@ -93,14 +95,22 @@ export default {
       );
     },
     viewCluster() {
+      this.flag = 0;
       this.viz.renderWithCypher(
         "MATCH p=(c:Cluster)-[:in_cluster]-(n:Domain) WHERE c.name='613' RETURN p"
       );
+      setTimeout(() => {
+        this.flag = 1;
+      }, 100);
     },
     otherMovie() {
+      this.flag = 0;
       this.viz.renderWithCypher(
         "MATCH p=(c:Cluster)-[:in_cluster]-(n:Domain)-[:has_movie]-(m:Movie) WHERE c.name='613' RETURN p limit 30"
       );
+      setTimeout(() => {
+        this.flag = 1;
+      }, 500);
     },
     draw() {
       var config = {
@@ -137,10 +147,10 @@ export default {
         },
         //查询节点的语句，写成你们的
         initial_cypher:
-        //   "MATCH p=(m:Movie)-[:has_movie] -(n:Domain)  WHERE n.name= " +
-        //   this.url +
-        //   " RETURN p limit 15",
-        "match p=(n:Domain)-[r:in_cluster]-(c:Cluster) return p limit 150"
+          //   "MATCH p=(m:Movie)-[:has_movie] -(n:Domain)  WHERE n.name= " +
+          //   this.url +
+          //   " RETURN p limit 15",
+          "match p=(n:Domain)-[r:in_cluster]-(c:Cluster) return p limit 150",
         // "MATCH p= (n:Cluster)-[:in_cluster]-(Domain)-[:has_movie]-(Movie) RETURN p LIMIT 100"
       };
       // this.viz = new NeoVis(config);
@@ -153,37 +163,8 @@ export default {
       window.slm = this.viz;
       const eno4jObject = this.viz;
       that.viz.registerOnEvent("completed", (ab) => {
-        // Your after render code here
         // this.flag = 1;
-        this.flag = 1;
-
-        // /**
-        //  * 处理节点拖到问题
-        //  */
-        // that.viz.nodes.on('click', function(params) {
-        //   // for (var i = 0; i < params.nodes.length; i++) {
-        //   //   var nodeId = params.nodes[i]
-        //   //   eno4jObject.nodes.update({ id: nodeId, fixed: { x: true, y: true }})
-        //   //   console.log('结束')
-        //   // }
-        //   console.log("click")
-        // })
-        // eno4jObject.network.on('dragStart', function(params) {
-        //   for (var i = 0; i < params.nodes.length; i++) {
-        //     var nodeId = params.nodes[i]
-        //     eno4jObject.nodes.update({ id: nodeId, fixed: { x: false, y: false }})
-        //     console.log('开始')
-        //   }
-        // })
       });
-
-      // this.viz.network.on('dragEnd', function(params) {
-      //     for (var i = 0; i < params.nodes.length; i++) {
-      //       var nodeId = params.nodes[i]
-      //       eno4jObject.nodes.update({ id: nodeId, fixed: { x: true, y: true }})
-      //       console.log('结束')
-      //     }
-      //   })
     },
   },
 };
