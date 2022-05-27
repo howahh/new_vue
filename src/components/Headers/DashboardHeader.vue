@@ -107,7 +107,7 @@
                     </svg>
                     <span>{{ item.time }}</span>
                   </template>
-                  <a slot="title" href="#">{{ item.title }}</a>
+                  <a slot="title" href="http://localhost:8080/#/taskstatus">{{ item.title }}</a>
                   <a-avatar
                     v-if="item.img"
                     slot="avatar"

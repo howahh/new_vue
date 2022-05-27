@@ -19,7 +19,7 @@
           "
         >
           <div style="margin-left: 10px; margin-top: 10px; margin-right: 10px; margin-bottom:10px;">
-            欢迎来到知识产权侵权溯源系统，我是您的智能助理。
+            欢迎来到 Piracy Spy -- 知识产权侵权保护溯源系统，我是您的智能助理。
           </div>
         </div>
       </div>

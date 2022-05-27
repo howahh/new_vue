@@ -4,7 +4,7 @@ module.exports = {
 		config
 			.plugin('html')
 			.tap(args => {
-				args[0].title = '知识产权侵权溯源系统'
+				args[0].title = 'Piracy Spy'
 				return args
 			})
 	}

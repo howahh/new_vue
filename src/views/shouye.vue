@@ -3,7 +3,10 @@
     <a-row :gutter="24">
       <a-col :span="10">
         <a-row>
-          <a-card :bordered="false" class="dashboard-bar-line header-solid mb-24">
+          <a-card
+            :bordered="false"
+            class="dashboard-bar-line header-solid mb-24"
+          >
             <template #title style="padding: 5px">
               <h6>电影被侵权次数</h6>
               <p style="margin-bottom: 0px">
@@ -17,7 +20,7 @@
             <CardBarChart></CardBarChart>
           </a-card>
         </a-row>
-        <a-row>
+        <a-row class="mb-24">
           <a-card class="second-line mb-24">
             <CardLineChart></CardLineChart>
           </a-card>
@@ -35,118 +38,70 @@
         <a-card class="first-line mb-24">
           <a-row :gutter="24">
             <a-col :span="4">
-              <a-progress
-                type="circle"
-                :strokeWidth="ciycle_width"
-                :stroke-color="{
-                  '0%': '#1890FF',
-                  '100%': '#B37FEB',
-                }"
-                :percent="90"
-                status="active"
-                :width="100"
-                style="margin-top: 10px; margin-left: 30px"
+             <dv-decoration-9
+                style="width: 150px; height: 150px; margin-top:5px;margin-left: 10px"
+                :color="['rgb(179,127,235)','rgb(24,144,255)']"
+                dur="7"
               >
-                <template #format="percent">
-                  <span style="color: #1890ff">爬虫任务1</span><br />
-                  <span style="color: #b37feb">{{ percent }}%</span>
-                </template></a-progress
-              >
+                  <div style="color: #1890ff">爬虫1:</div>
+                  <br>
+                  <div style="color: #b37feb">29%</div>
+              </dv-decoration-9>
             </a-col>
             <a-col :span="4">
-              <a-progress
-                type="circle"
-                :strokeWidth="ciycle_width"
-                :stroke-color="{
-                  '0%': '#1890FF',
-                  '100%': '#B37FEB',
-                }"
-                :percent="89"
-                status="active"
-                :width="100"
-                style="margin-top: 10px; margin-left: 40px"
+              <dv-decoration-9
+                style="width: 150px; height: 150px; margin-top:5px;margin-left: 10px"
+                :color="['rgb(24,144,255)', 'rgb(179,127,235)']"
+                dur="7"
               >
-                <template #format="percent">
-                  <span style="color: #1890ff">爬虫任务1</span><br />
-                  <span style="color: #b37feb">{{ percent }}%</span>
-                </template></a-progress
-              >
+                  <div style="color: #1890ff">爬虫1:</div>
+                  <br>
+                  <div style="color: #b37feb">29%</div>
+              </dv-decoration-9>
             </a-col>
             <a-col :span="4">
-              <a-progress
-                type="circle"
-                :strokeWidth="ciycle_width"
-                :stroke-color="{
-                  '0%': '#1890FF',
-                  '100%': '#B37FEB',
-                }"
-                :percent="22"
-                status="active"
-                :width="100"
-                style="margin-top: 10px; margin-left: 40px"
+              <dv-decoration-9
+                style="width: 150px; height: 150px; margin-top:5px;margin-left: 10px"
+                :color="['rgb(24,144,255)', 'rgb(179,127,235)']"
+                dur="5"
               >
-                <template #format="percent">
-                  <span style="color: #1890ff">爬虫任务1</span><br />
-                  <span style="color: #b37feb">{{ percent }}%</span>
-                </template></a-progress
-              >
+                  <div style="color: #1890ff">爬虫1:</div>
+                  <br>
+                  <div style="color: #b37feb">29%</div>
+              </dv-decoration-9>
             </a-col>
             <a-col :span="4">
-              <a-progress
-                type="circle"
-                :strokeWidth="ciycle_width"
-                :stroke-color="{
-                  '0%': '#1890FF',
-                  '100%': '#B37FEB',
-                }"
-                :percent="58"
-                status="active"
-                :width="100"
-                style="margin-top: 10px; margin-left: 40px"
+              <dv-decoration-9
+                style="width: 150px; height: 150px; margin-top:5px;margin-left: 10px"
+                :color="['rgb(24,144,255)', 'rgb(179,127,235)']"
+                dur="6"
               >
-                <template #format="percent">
-                  <span style="color: #1890ff">爬虫任务1</span><br />
-                  <span style="color: #b37feb">{{ percent }}%</span>
-                </template></a-progress
-              >
+                  <div style="color: #1890ff">爬虫1:</div>
+                  <br>
+                  <div style="color: #b37feb">29%</div>
+              </dv-decoration-9>
             </a-col>
             <a-col :span="4">
-              <a-progress
-                type="circle"
-                :strokeWidth="ciycle_width"
-                :stroke-color="{
-                  '0%': '#1890FF',
-                  '100%': '#B37FEB',
-                }"
-                :percent="72"
-                status="active"
-                :width="100"
-                style="margin-top: 10px; margin-left: 40px"
+              <dv-decoration-9
+                style="width: 150px; height: 150px; margin-top:5px;margin-left: 10px"
+                :color="['rgb(24,144,255)', 'rgb(179,127,235)']"
+                dur="2"
               >
-                <template #format="percent">
-                  <span style="color: #1890ff">爬虫任务1</span><br />
-                  <span style="color: #b37feb">{{ percent }}%</span>
-                </template></a-progress
-              >
+                  <div style="color: #1890ff">爬虫1:</div>
+                  <br>
+                  <div style="color: #b37feb">29%</div>
+              </dv-decoration-9>
             </a-col>
             <a-col :span="4">
-              <a-progress
-                type="circle"
-                :strokeWidth="ciycle_width"
-                :stroke-color="{
-                  '0%': '#1890FF',
-                  '100%': '#B37FEB',
-                }"
-                :percent="100"
-                status="active"
-                :width="100"
-                style="margin-top: 10px; margin-left: 40px"
+              <dv-decoration-9
+                style="width: 150px; height: 150px; margin-top:5px;margin-left: 10px"
+                :color="['rgb(24,144,255)', 'rgb(179,127,235)']"
+                dur="3"
               >
-                <template #format="percent">
-                  <span style="color: #1890ff">爬虫任务1</span><br />
-                  <span style="color: #b37feb">{{ percent }}%</span>
-                </template></a-progress
-              >
+                  <div style="color: #1890ff">爬虫1:</div>
+                  <br>
+                  <div style="color: #b37feb">29%</div>
+              </dv-decoration-9>
             </a-col>
           </a-row>
         </a-card>
@@ -161,8 +116,8 @@
         >
           <template #title>
             <h6>任务运行情况</h6>
-            <p>本月新增<span style="color:rgb(0,130,251)">-33%</span></p>
-            <p>本月新增<span style="color:rgb(179,127,235)">-57%</span></p>
+            <p>本月新增<span style="color: rgb(0, 130, 251)">-33%</span></p>
+            <p>本月新增<span style="color: rgb(179, 127, 235)">-57%</span></p>
           </template>
           <template #extra>
             <a-badge
@@ -195,7 +150,7 @@ import CardLineChart from "../components/Cards/CardLineChart.vue";
 import WidgetGlobe from "../components/Widgets/WidgetGlobe";
 import Mymap from "../components/Mymap";
 import BarsForDash from "../components/BarsForDash";
-import IndexRoll from "../components/IndexRoll"
+import IndexRoll from "../components/IndexRoll";
 
 export default {
   components: {
@@ -210,7 +165,7 @@ export default {
 
   data() {
     return {
-      ciycle_width:8,
+      ciycle_width: 8,
     };
   },
   methods: {},
@@ -218,9 +173,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 .first-line {
-  height: 120px;
+  height: 160px;
 }
 .second-line {
   height: 278px;
@@ -235,5 +189,4 @@ export default {
 .map::v-deep {
   height: 580px;
 }
-
 </style>
