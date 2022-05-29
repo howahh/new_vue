@@ -34,14 +34,115 @@
           class="mb-24 card-table dashboard-bar-line header-solid"
           style="height: 500px"
         >
-          <NeoForAll></NeoForAll>
+          <NeoForAll @func="changeById"></NeoForAll>
         </a-card>
       </a-col>
       <a-col :span="8">
         <a-card
           class="mb-24 card-table dashboard-bar-line header-solid"
           style="height: 500px"
-        ></a-card>
+        >
+          <div
+            class="timeline"
+            style="
+              max-height: 480px;
+              max-weight: 350px;
+              overflow-x: hidden;
+              overflow-y: scroll;
+              margin-top: 10px;
+              matgin-buttom: 10px;
+            "
+          >
+            <a-timeline mode="alternate" v-show="false">
+              <a-timeline-item color="green">聚类1838</a-timeline-item>
+              <a-timeline-item color="green">
+                新增网站:{{ this.class1838[0].url }}<br />{{
+                  this.class1838[0].date
+                }}
+              </a-timeline-item>
+              <a-timeline-item>
+                <a-icon
+                  slot="dot"
+                  type="clock-circle-o"
+                  style="font-size: 16px"
+                />
+                新增网站:{{ this.class1838[1].url }}<br />{{
+                  this.class1838[1].date
+                }}
+              </a-timeline-item>
+              <a-timeline-item color="red">
+                新增可疑组织人员:<br />{{ this.class1838[5].name }}
+              </a-timeline-item>
+              <a-timeline-item
+                >新增网站:{{ this.class1838[2].url }}<br />{{
+                  this.class1838[2].date
+                }}
+              </a-timeline-item>
+              <a-timeline-item
+                >新增网站:新增网站:{{ this.class1838[3].url }}<br />{{
+                  this.class1838[3].date
+                }}
+              </a-timeline-item>
+              <a-timeline-item>
+                <a-icon
+                  slot="dot"
+                  type="clock-circle-o"
+                  style="font-size: 16px"
+                />
+                组织常用服务:{{ this.class1838[5].pro }}<br />2022-04-01
+              </a-timeline-item>
+              <a-timeline-item
+                >新增网站:新增网站:{{ this.class1838[4].url }}<br />{{
+                  this.class1838[4].date
+                }}
+              </a-timeline-item>
+            </a-timeline>
+            <a-timeline mode="alternate" v-show="true">
+              <a-timeline-item color="green">聚类{{this.clusterId}}</a-timeline-item>
+              <a-timeline-item color="green">
+                新增网站:{{ this.class1838[0].url }}<br />{{
+                  this.class1838[0].date
+                }}
+              </a-timeline-item>
+              <a-timeline-item>
+                <a-icon
+                  slot="dot"
+                  type="clock-circle-o"
+                  style="font-size: 16px"
+                />
+                新增网站:{{ this.class1838[1].url }}<br />{{
+                  this.class1838[1].date
+                }}
+              </a-timeline-item>
+              <a-timeline-item color="red">
+                新增可疑组织人员:<br />{{ this.class1838[5].name }}
+              </a-timeline-item>
+              <a-timeline-item
+                >新增网站:{{ this.class1838[2].url }}<br />{{
+                  this.class1838[2].date
+                }}
+              </a-timeline-item>
+              <a-timeline-item
+                >新增网站:新增网站:{{ this.class1838[3].url }}<br />{{
+                  this.class1838[3].date
+                }}
+              </a-timeline-item>
+              <a-timeline-item>
+                <a-icon
+                  slot="dot"
+                  type="clock-circle-o"
+                  style="font-size: 16px"
+                />
+                组织常用服务:{{ this.class1838[5].pro }}<br />2022-04-01
+              </a-timeline-item>
+              <a-timeline-item
+                >新增网站:新增网站:{{ this.class1838[4].url }}<br />{{
+                  this.class1838[4].date
+                }}
+              </a-timeline-item>
+            </a-timeline>
+          </div>
+        </a-card>
       </a-col>
     </a-row>
     <a-row :gutter="24">
@@ -100,6 +201,7 @@
 import ChartLeft from "../components/TraceChartLeft.vue";
 import ChartRight from "../components/TraceChartRight.vue";
 import NeoForAll from "../components/NeoForAll.vue";
+import * as NeoVis from "neovis.js";
 export default {
   components: { ChartLeft, ChartRight, NeoForAll },
   data() {
@@ -107,6 +209,15 @@ export default {
       data1: [],
       data_all: [],
       chartLeftFlag: false,
+      clusterId: null,
+      class1838: [
+        { url: "yy6090.org", date: "2022-05-12" },
+        { url: "zzhyqh.cn", date: "2022-05-01" },
+        { url: "zyrbbs.org", date: "2022-04-13" },
+        { url: "wuweiscape.com", date: "2022-04-01" },
+        { url: "xjbylxx.org", date: "2022-04-01" },
+        { name: "LiChen", pro: "Nginx" },
+      ],
     };
   },
 
@@ -119,6 +230,10 @@ export default {
   },
 
   methods: {
+    changeById(data) {
+      // console.log("infater",data)
+      this.clusterId = data;
+    },
     onChangeLabel(max) {
       //   Math.floor(Math.random() * 10 + 1)
       this.chartLeftFlag = false;

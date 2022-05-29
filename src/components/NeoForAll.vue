@@ -8,7 +8,7 @@
       <div style="height: 210px"></div>
       <a-spin />
     </div>
-    <div class="buttons" style="height: 219px">
+    <div class="buttons" style="height: 50px text-align:left">
       <a-button
         @click="this.rerender"
         style="margin-right: 17px; margin-left: 20px"
@@ -17,18 +17,26 @@
       <a-button @click="this.update" style="margin-right: 17px"
         >查看更多</a-button
       >
-      <a-button @click="this.getCluster" style="margin-right: 17px"
+      <!-- <a-button @click="this.getCluster" style="margin-right: 17px"
         >查看分类</a-button
       >
       <a-button @click="this.viewCluster" style="margin-right: 17px"
         >查看该类</a-button
-      >
+      > -->
       <a-button @click="this.stabilize" style="margin-right: 17px"
         >固定图谱</a-button
       >
-      <a-button @click="this.otherMovie" style="margin-right: 17px"
-        >其他网站</a-button
-      >
+      <!-- <a-button @click="this.otherMovie" style="margin-right: 17px"
+        >其他网站</a-button 
+      >-->
+      <a-input-search
+        placeholder="输入查看的组织编号,获取更多信息"
+        :loading="this.buttonFlag"
+        v-model:value="clusterValue"
+        @search="getByClusterId(clusterValue)"
+        enter-button
+        style="width: 40%"
+      />
     </div>
   </div>
 </template>
@@ -45,6 +53,9 @@ export default {
       viz: null, //定义一个viz对象
       flag: 0,
       url: "'4kgd.cn'",
+      buttonFlag:false,
+      clusterValue:""
+
     };
   },
   watch: {
@@ -70,6 +81,12 @@ export default {
     }, 4000);
   }, //渲染
   methods: {
+    getByClusterId(value){
+      // console.log(value)
+      // console.log(this.buttonFlag)
+      this.$emit('func',value)
+      this.buttonFlag=true
+    },
     stabilize() {
       this.viz.stabilize();
     },

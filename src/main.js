@@ -11,6 +11,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import dataV from '@jiaminghi/data-view'
 import VueDarkMode from "@growthbunker/vuedarkmode"
+import VueTimeline from "@growthbunker/vuetimeline";
+
+Vue.use(VueTimeline);
 // import NeoVis from 'neovis.js';
 Vue.use(VueDarkMode, {
   // Specify the theme to use: dark or light (dark by default).
