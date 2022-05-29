@@ -53,7 +53,7 @@
               matgin-buttom: 10px;
             "
           >
-            <a-timeline mode="alternate" v-show="false">
+            <a-timeline mode="alternate" v-show="this.classChoice">
               <a-timeline-item color="green">聚类1838</a-timeline-item>
               <a-timeline-item color="green">
                 新增网站:{{ this.class1838[0].url }}<br />{{
@@ -97,10 +97,10 @@
                 }}
               </a-timeline-item>
             </a-timeline>
-            <a-timeline mode="alternate" v-show="true">
-              <a-timeline-item color="green">聚类{{this.clusterId}}</a-timeline-item>
+            <a-timeline mode="alternate" v-show="this.classChoice2">
+              <a-timeline-item color="green">聚类870</a-timeline-item>
               <a-timeline-item color="green">
-                新增网站:{{ this.class1838[0].url }}<br />{{
+                新增网站:{{ this.class870[0].url }}<br />{{
                   this.class1838[0].date
                 }}
               </a-timeline-item>
@@ -110,21 +110,21 @@
                   type="clock-circle-o"
                   style="font-size: 16px"
                 />
-                新增网站:{{ this.class1838[1].url }}<br />{{
+                新增网站:{{ this.class870[1].url }}<br />{{
                   this.class1838[1].date
                 }}
               </a-timeline-item>
-              <a-timeline-item color="red">
-                新增可疑组织人员:<br />{{ this.class1838[5].name }}
-              </a-timeline-item>
+              <!-- <a-timeline-item color="red">
+                新增可疑组织人员:<br />{{ this.class870[5].name }}
+              </a-timeline-item> -->
               <a-timeline-item
-                >新增网站:{{ this.class1838[2].url }}<br />{{
-                  this.class1838[2].date
+                >新增网站:{{ this.class870[2].url }}<br />{{
+                  this.class870[2].date
                 }}
               </a-timeline-item>
               <a-timeline-item
-                >新增网站:新增网站:{{ this.class1838[3].url }}<br />{{
-                  this.class1838[3].date
+                >新增网站:{{ this.class870[3].url }}<br />{{
+                  this.class870[3].date
                 }}
               </a-timeline-item>
               <a-timeline-item>
@@ -210,6 +210,8 @@ export default {
       data_all: [],
       chartLeftFlag: false,
       clusterId: null,
+      classChoice: true,
+      classChoice2: false,
       class1838: [
         { url: "yy6090.org", date: "2022-05-12" },
         { url: "zzhyqh.cn", date: "2022-05-01" },
@@ -217,6 +219,14 @@ export default {
         { url: "wuweiscape.com", date: "2022-04-01" },
         { url: "xjbylxx.org", date: "2022-04-01" },
         { name: "LiChen", pro: "Nginx" },
+      ],
+      class870: [
+        { url: "116986.com", date: "2022-05-01" },
+        { url: "661652.com", date: "2022-04-22" },
+        { url: "jhdutwz.cn", date: "2022-04-13" },
+        { url: "0p679.cn", date: "2022-04-12" },
+        { url: "knymani.cn", date: "2022-04-09" },
+        { name: "暂无", pro: "IIS" },
       ],
     };
   },
@@ -233,6 +243,15 @@ export default {
     changeById(data) {
       // console.log("infater",data)
       this.clusterId = data;
+      var random = Math.floor(Math.random() * 100 + 10);
+      this.onChangeLabel(random);
+      if (this.classChoice) {
+        this.classChoice = false;
+        this.classChoice2 = true;
+      } else if (!this.classChoice) {
+        this.classChoice = true;
+        this.classChoice2 = false;
+      }
     },
     onChangeLabel(max) {
       //   Math.floor(Math.random() * 10 + 1)

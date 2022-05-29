@@ -86,6 +86,12 @@ export default {
       // console.log(this.buttonFlag)
       this.$emit('func',value)
       this.buttonFlag=true
+      setTimeout(function(){
+        this.buttonFlag=false
+        console.log("hhh",this.buttonFlag)
+      },1000)
+        this.buttonFlag=false
+
     },
     stabilize() {
       this.viz.stabilize();
