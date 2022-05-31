@@ -61,11 +61,6 @@
                 }}
               </a-timeline-item>
               <a-timeline-item>
-                <a-icon
-                  slot="dot"
-                  type="clock-circle-o"
-                  style="font-size: 16px"
-                />
                 新增网站:{{ this.class1838[1].url }}<br />{{
                   this.class1838[1].date
                 }}
@@ -106,10 +101,7 @@
               </a-timeline-item>
               <a-timeline-item>
                 <a-icon
-                  slot="dot"
-                  type="clock-circle-o"
-                  style="font-size: 16px"
-                />
+
                 新增网站:{{ this.class870[1].url }}<br />{{
                   this.class1838[1].date
                 }}
