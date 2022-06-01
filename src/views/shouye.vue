@@ -146,7 +146,7 @@
           :bodyStyle="{ padding: '0 12px 8px 3px' }"
         >
           <a-row>
-            <a-col :span="16">
+            <a-col :span="12">
               <h6>任务实时处理状态</h6>
               <a-carousel autoplay dot-position="right" autoplay-speed="10">
                 <div style="text-align: center">
@@ -160,7 +160,7 @@
                           任务中已分析网站:
                         </div></a-col
                       >
-                      <a-col :span="11"
+                      <a-col :span="16"
                         ><a-progress :percent="this.per0[0]" status="active"
                       /></a-col>
                       <a-col :span="2"><a-spin size="small" /></a-col>
@@ -174,7 +174,7 @@
                           当前分析网站进度:
                         </div></a-col
                       >
-                      <a-col :span="11"
+                      <a-col :span="16"
                         ><a-progress :percent="this.per0[1]" status="active"
                       /></a-col>
                       <a-col :span="2"><a-spin size="small" /></a-col>
@@ -188,7 +188,7 @@
                           任务中已聚类网站:
                         </div></a-col
                       >
-                      <a-col :span="11"
+                      <a-col :span="16"
                         ><a-progress :percent="this.per0[2]" status="active"
                       /></a-col>
                       <a-col :span="2"><a-spin size="small" /></a-col>
@@ -206,7 +206,7 @@
                           任务中已分析网站:
                         </div></a-col
                       >
-                      <a-col :span="11"
+                      <a-col :span="16"
                         ><a-progress :percent="this.per1[0]" status="active"
                       /></a-col>
                       <a-col :span="2"><a-spin size="small" /></a-col>
@@ -220,7 +220,7 @@
                           当前分析网站进度:
                         </div></a-col
                       >
-                      <a-col :span="11"
+                      <a-col :span="16"
                         ><a-progress :percent="this.per1[1]" status="active"
                       /></a-col>
                       <a-col :span="2"><a-spin size="small" /></a-col>
@@ -234,7 +234,7 @@
                           任务中已聚类网站:
                         </div></a-col
                       >
-                      <a-col :span="11"
+                      <a-col :span="16"
                         ><a-progress :percent="this.per1[2]" status="active"
                       /></a-col>
                       <a-col :span="2"><a-spin size="small" /></a-col>
@@ -252,7 +252,7 @@
                           任务中已分析网站:
                         </div></a-col
                       >
-                      <a-col :span="11"
+                      <a-col :span="16"
                         ><a-progress :percent="this.per2[0]" status="active"
                       /></a-col>
                       <a-col :span="2"><a-spin size="small" /></a-col>
@@ -266,7 +266,7 @@
                           当前分析网站进度:
                         </div></a-col
                       >
-                      <a-col :span="11"
+                      <a-col :span="16"
                         ><a-progress :percent="this.per2[1]" status="active"
                       /></a-col>
                       <a-col :span="2"><a-spin size="small" /></a-col>
@@ -280,7 +280,7 @@
                           任务中已聚类网站:
                         </div></a-col
                       >
-                      <a-col :span="11"
+                      <a-col :span="16"
                         ><a-progress :percent="this.per2[2]" status="active"
                       /></a-col>
                       <a-col :span="2"><a-spin size="small" /></a-col>
@@ -289,7 +289,7 @@
                 </div>
               </a-carousel>
             </a-col>
-            <a-col :span="8"> <Pie style="margin-bottom: 20px; margin-right:40px;"></Pie> </a-col>
+            <a-col :span="12"> <Pie style="margin-bottom: 20px; margin-right:60px; overflow:visible;"></Pie> </a-col>
           </a-row>
         </a-card>
       </a-col>
