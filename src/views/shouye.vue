@@ -243,7 +243,7 @@
                 </div>
                 <div style="text-align: center">
                   <a-tag style="margin-bottom: 30px" color="blue"
-                    >深度分析任务-必应爬虫</a-tag
+                    >深度分析任务-谷歌爬虫</a-tag
                   >
                   <a-row>
                     <a-row :gutter="20">
