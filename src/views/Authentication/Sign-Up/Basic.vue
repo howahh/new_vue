@@ -100,6 +100,7 @@
             block
             html-type="submit"
             class="login-form-button"
+            :loading="this.loading"
           >
             登录
           </a-button>
@@ -119,6 +120,7 @@
 export default {
   data() {
     return {
+      loading:false,
       // Sign up form object.
       form: this.$form.createForm(this, { name: "signup_basic" }),
     };
@@ -140,6 +142,7 @@ export default {
     },
 
     handleSubmit(e) {
+      this.loading = true;
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
@@ -161,16 +164,30 @@ export default {
               if (response.data.status == 200) {
                 console.log(response);
                 // ElMessage.success(response.data.msg);
-                this.openNotificationSuccess(values.email);
-                localStorage.setItem("ms_username", values.email);
-                this.$router.push("/index");
+                
+                this.axios
+                  .post("http://localhost:5000/user/getUserInPage", {
+                    start:0,
+                    count:100,
+                    email: values.email,
+                  })
+                  .then((response) => {
+                    var result = response.data.data[0];
+                    this.openNotificationSuccess(result.username);
+                    localStorage.setItem("ms_username", result.username);
+                    localStorage.setItem("ms_email", result.email);
+                    localStorage.setItem("ms_group", result.group);
+                    this.$router.push("/index");
+                  });
               } else if (response.data.status == 203) {
                 // ElMessage.warning(response.data.msg);
-				this.openNotificationFail();
+                this.openNotificationFail();
+                this.loading = false;
                 this.$router.push("/login");
               } else if (response.data.status == 202) {
                 // ElMessage.error(response.data.msg);
-				this.openNotificationFail();
+                this.openNotificationFail();
+                this.loading = false;
                 this.$router.push("/login");
               }
               console.log(response);

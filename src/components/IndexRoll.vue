@@ -1,7 +1,7 @@
 <template>
   <div class="place-holder">
     <div style="height: 50px; color: white">
-      <h6 style="padding: 16px">实时爬取任务</h6>
+      <h6 style="padding: 16px">实时新增网站</h6>
     </div>
     <div>
       <a-carousel autoplay>

@@ -206,7 +206,7 @@ export default {
             this.data[i].group = "管理员";
           }
 
-          if (this.data[i].ban == "1") {
+          if (this.data[i].ban == "0") {
             this.data[i].ban = "可用";
           } else {
             this.data[i].ban = "已停用";
