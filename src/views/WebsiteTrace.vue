@@ -92,13 +92,14 @@
                 }}
               </a-timeline-item>
             </a-timeline>
+            
             <a-timeline mode="alternate" v-show="this.classChoice2">
               <a-timeline-item color="green">聚类870</a-timeline-item>
               <a-timeline-item color="green">
                 新增网站:{{ this.class870[0].url }}<br />{{
                   this.class1838[0].date
                 }} 
-                
+
               </a-timeline-item>
               <a-timeline-item>
                 <a-icon
