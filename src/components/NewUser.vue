@@ -102,11 +102,10 @@ export default {
         var form = JSON.parse(JSON.stringify(this.form));
         if (valid) {
           this.iconLoading = true;
-          console.log("3");
           if (form.ban == true) {
-            form.ban = "1";
-          } else {
             form.ban = "0";
+          } else {
+            form.ban = "1";
           }
           if (form.group == "1") {
             form.group = "normal";

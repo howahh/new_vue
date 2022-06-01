@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- Pie chart -->
+
     <canvas
       ref="chart"
       class="chart-pie"
@@ -18,7 +19,7 @@ export default {
   props: [],
   data() {
     return {
-      height: 300,
+      height: 200,
     };
   },
   mounted() {
@@ -27,7 +28,7 @@ export default {
     this.chart = new Chart(ctx, {
       type: "pie",
       data: {
-        labels: ["侵权网站", "非侵权网站"],
+        labels: ["深度分析任务", "浅度分析任务"],
         datasets: [
           {
             label: "Projects",
@@ -36,13 +37,8 @@ export default {
             tension: 0.9,
             pointRadius: 2,
             borderWidth: 2,
-            backgroundColor: [
-              "rgb(255,173,96)",
-              "rgb(150,206,180)",
-              //   "#141414",
-              //   "#1890FF",
-            ],
-            data: [545, 376],
+            backgroundColor: ["rgb(179,127,235)", "rgb(24,144,255)", ],
+            data: [12, 9],
             fill: false,
           },
         ],
@@ -52,8 +48,8 @@ export default {
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            // display: false,
-            position: "top",
+            display: true,
+			position:"right",
           },
         },
         interaction: {

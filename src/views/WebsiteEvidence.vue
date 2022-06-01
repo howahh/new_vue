@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-card style="min-height: 1000px; padding: 16px">
-      <div style="text-align: center; margin-top: 200px">
+      <div style="text-align: center; margin-top: 150px">
         <img
           src="http://localhost:8080/images/PiracySpy.png"
           style="width: 600px"
@@ -30,9 +30,7 @@
             /></a-col>
             <a-col :span="2"><a-spin v-if="this.spin" size="small" /></a-col>
             <a-col :span="7">
-              <span style="font-weight: bold"
-                >{{this.words}}</span
-              >
+              <span style="font-weight: bold">{{ this.words }}</span>
             </a-col>
           </a-row>
         </a-col>
@@ -40,7 +38,7 @@
       </a-row>
       <div v-if="this.isWebsite" style="text-align: center">
         <span style="font-weight: bold"
-          >您想检测的网站已在我们的数据库中，网站信息如下。右边为网站截图取证，已添加带有时间戳的盲水印。</span
+          >您想检测的网站已在我们的数据库中，已为您探测网站最新信息。右边为网站截图取证，已添加带有时间戳的盲水印。</span
         >
       </div>
 
@@ -77,6 +75,9 @@
             </a-descriptions-item>
             <a-descriptions-item label="运营人员邮箱">
               <a-tag color="green"> {{ this.data.email }} </a-tag>
+            </a-descriptions-item>
+            <a-descriptions-item label="聚类ID">
+              <a-tag color="cyan"> {{ this.data.cluster }} </a-tag>
             </a-descriptions-item>
             <a-descriptions-item label="是否是侵权电影网站">
               {{ this.data.isin }}
@@ -128,7 +129,7 @@ export default {
           let day = new Date().getDate();
           this.data["detect_time"] = year + "年" + month + "月" + day + "日";
           this.data["isin"] = "是";
-          console.log(this.data);
+          this.data["cluster"] = 313;
         });
       this.change(value);
     },

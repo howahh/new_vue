@@ -211,7 +211,8 @@
           href="https://demos.creative-tim.com/muse-vue-ant-design-dashboard-pro/documentation/overview"
           target="_blank"
         >
-          邮件联系
+          <a-icon type="mail" style="font-size:20px;" />
+          <span style="font-size:16px;font-weight:bold;">邮件联系</span>
         </a-button>
       </div>
     </div>
