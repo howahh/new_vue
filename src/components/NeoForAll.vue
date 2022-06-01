@@ -15,7 +15,7 @@
         >恢复初始</a-button
       >
       <a-button @click="this.update" style="margin-right: 17px"
-        >查看更多</a-button
+        >查看更多</a-button 
       >
       <!-- <a-button @click="this.getCluster" style="margin-right: 17px"
         >查看分类</a-button
@@ -70,7 +70,7 @@ export default {
       this.draw();
     },
   },
-  
+
   mounted() {
     if (this.site == 2) {
       this.url = "'4kwc.com'";
