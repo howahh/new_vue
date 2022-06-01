@@ -146,7 +146,7 @@
           :bodyStyle="{ padding: '0 12px 8px 3px' }"
         >
           <a-row>
-            <a-col :span="14">
+            <a-col :span="16">
               <h6>任务实时处理状态</h6>
               <a-carousel autoplay dot-position="right" autoplay-speed="10">
                 <div style="text-align: center">
@@ -243,7 +243,7 @@
                 </div>
                 <div style="text-align: center">
                   <a-tag style="margin-bottom: 30px" color="blue"
-                    >深度分析任务-必应爬虫</a-tag
+                    >深度分析任务-谷歌爬虫</a-tag
                   >
                   <a-row>
                     <a-row :gutter="20">
@@ -289,7 +289,7 @@
                 </div>
               </a-carousel>
             </a-col>
-            <a-col :span="10"> <Pie style="margin-bottom: 20px"></Pie> </a-col>
+            <a-col :span="8"> <Pie style="margin-bottom: 20px; margin-right:40px;"></Pie> </a-col>
           </a-row>
         </a-card>
       </a-col>
