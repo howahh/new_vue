@@ -70,6 +70,7 @@ export default {
       this.draw();
     },
   },
+  
   mounted() {
     if (this.site == 2) {
       this.url = "'4kwc.com'";
