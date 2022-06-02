@@ -70,7 +70,7 @@
           >
           </a-input>
         </a-form-item>
-        <a-form-item class="mb-5">
+        <a-form-item class="mb-10">
           <a-input
             v-decorator="[
               'password',
@@ -81,6 +81,27 @@
           >
           </a-input>
         </a-form-item>
+        <a-form-item class="mb-5">
+          <a-row :gutter="24">
+            <a-col :span="16">
+              <a-input
+                v-decorator="[
+                  'captcha',
+                  { rules: [{ required: true, message: '请输入验证码!' }] },
+                ]"
+                placeholder="请输入右侧的验证码..."
+              >
+              </a-input
+            ></a-col>
+            <a-col :span="8">
+              <img
+                style="width: 120px"
+                src="http://localhost:8080/images/captcha2.jpg"
+                alt=""
+            /></a-col>
+          </a-row>
+        </a-form-item>
+
         <!-- <a-form-item class="mb-10">
 					<a-checkbox
 						v-decorator="[
@@ -120,7 +141,7 @@
 export default {
   data() {
     return {
-      loading:false,
+      loading: false,
       // Sign up form object.
       form: this.$form.createForm(this, { name: "signup_basic" }),
     };
@@ -138,6 +159,13 @@ export default {
       this.$notification["error"]({
         message: "登录失败！",
         description: "请检查邮箱、密码是否正确",
+      });
+    },
+
+    openCaptcha() {
+      this.$notification["error"]({
+        message: "登录失败！",
+        description: "验证码输入错误，请重试！",
       });
     },
 
@@ -164,11 +192,11 @@ export default {
               if (response.data.status == 200) {
                 console.log(response);
                 // ElMessage.success(response.data.msg);
-                
+
                 this.axios
                   .post("http://localhost:5000/user/getUserInPage", {
-                    start:0,
-                    count:100,
+                    start: 0,
+                    count: 100,
                     email: values.email,
                   })
                   .then((response) => {

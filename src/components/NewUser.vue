@@ -107,7 +107,7 @@ export default {
           } else {
             form.ban = "1";
           }
-          if (form.group == "1") {
+          if (form.group == "2") {
             form.group = "normal";
           } else {
             form.group = "super";

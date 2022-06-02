@@ -187,7 +187,9 @@
               >
                 <NewTask />
                 <template slot="footer">
-                  <a-button key="back" @click="handleCancelTask"> 取消 </a-button>
+                  <a-button key="back" @click="handleCancelTask">
+                    取消
+                  </a-button>
                 </template>
               </a-modal>
             </a-descriptions-item>
@@ -372,6 +374,30 @@ export default {
       ],
       eventsData: [
         {
+          id: "5",
+          title: "广度式爬虫",
+          code: "2022 年 06 月 02 日 上午 00:00",
+          iconClass: "text-primary",
+          icon: "windows",
+          iconBgColor: "rgba(33,82,255,.03)",
+        },
+        {
+          id: "6",
+          title: "关键词爬虫",
+          code: "2022 年 06 月 03 日 上午 00:00",
+          iconClass: "text-primary",
+          icon: "bell",
+          iconBgColor: "rgba(121,40,202,.03)",
+        },
+        {
+          id: "7",
+          title: "广度式爬虫",
+          code: "2022 年 06 月 05 日 上午 00:00",
+          iconClass: "text-success",
+          icon: "book",
+          iconBgColor: "rgba(23,173,55,.03)",
+        },
+        {
           id: "1",
           title: "广度式爬虫",
           code: "2022 年 06 月 08 日 上午 00:00",
@@ -387,30 +413,30 @@ export default {
           icon: "bell",
           iconBgColor: "rgba(121,40,202,.03)",
         },
-        {
-          id: "3",
-          title: "广度式爬虫",
-          code: "2022 年 06 月 18 日 上午 00:00",
-          iconClass: "text-success",
-          icon: "book",
-          iconBgColor: "rgba(23,173,55,.03)",
-        },
-        {
-          id: "4",
-          title: "广度式爬虫",
-          code: "2022 年 06 月 21 日 上午 00:00",
-          iconClass: "text-warning",
-          icon: "car",
-          iconBgColor: "rgba(245,57,57,.03)",
-        },
-        {
-          id: "5",
-          title: "特异性爬虫",
-          code: "2022 年 06 月 23 日 上午 00:00",
-          iconClass: "text-primary",
-          icon: "windows",
-          iconBgColor: "rgba(33,82,255,.03)",
-        },
+        // {
+        //   id: "3",
+        //   title: "广度式爬虫",
+        //   code: "2022 年 06 月 18 日 上午 00:00",
+        //   iconClass: "text-success",
+        //   icon: "book",
+        //   iconBgColor: "rgba(23,173,55,.03)",
+        // },
+        // {
+        //   id: "4",
+        //   title: "广度式爬虫",
+        //   code: "2022 年 06 月 21 日 上午 00:00",
+        //   iconClass: "text-warning",
+        //   icon: "car",
+        //   iconBgColor: "rgba(245,57,57,.03)",
+        // },
+        // {
+        //   id: "5",
+        //   title: "特异性爬虫",
+        //   code: "2022 年 06 月 23 日 上午 00:00",
+        //   iconClass: "text-primary",
+        //   icon: "windows",
+        //   iconBgColor: "rgba(33,82,255,.03)",
+        // },
       ],
       calendarOptions: {
         plugins: [dayGridPlugin, interactionPlugin],
@@ -437,6 +463,13 @@ export default {
             title: "广度式爬虫",
             start: "2022-06-21",
             end: "2022-06-22",
+            className: "bg-warning text-dark",
+          },
+
+          {
+            title: "广度式爬虫",
+            start: "2022-06-05",
+            end: "2022-06-05",
             className: "bg-warning text-dark",
           },
 

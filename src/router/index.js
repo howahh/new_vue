@@ -65,10 +65,10 @@ let routes = [{
 		// this generates a separate chunk (about.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
 		meta: {
-			title: '采集任务结果',
+			title: '数据分析概览',
 			sidebarMap: ['dashboards'],
 			layoutClass: 'layout-profile',
-			breadcrumbs: ['数据分析结果', '采集任务结果'],
+			breadcrumbs: ['数据分析结果', '数据分析概览'],
 		},
 		component: () => import( /* webpackChunkName: "dashboard" */ '../views/EventResult.vue'),
 	}, {
