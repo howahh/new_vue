@@ -4,9 +4,8 @@
 	<a-card :bordered="false" class="dashboard-bar-line header-solid">
 		<template #title>
 			<h6>侵权网站数量变化</h6>			
-			<p>本月新增<span style="color:rgb(24,144,255)">-20%</span></p>	
-			<p>本月新增<span style="color:rgb(179,127,235)">+12%</span></p>
-			
+			<p>本月新增<span style="color:rgb(179,127,235)">-20%</span></p>	
+			<p>本月新增<span style="color:rgb(24,144,255)">+12%</span></p>
 		</template>
 		<template #extra>
 			<a-badge color="primary" class="badge-dot-primary" text="侵权" />

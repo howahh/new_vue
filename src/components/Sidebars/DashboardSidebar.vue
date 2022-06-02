@@ -88,7 +88,7 @@
         <a-menu-item-group>
           <a-menu-item>
             <router-link to="/eventresult">
-              <span class="label">采集任务结果</span>
+              <span class="label">数据分析概览</span>
             </router-link>
           </a-menu-item>
           <a-menu-item>
