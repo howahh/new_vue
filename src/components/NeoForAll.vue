@@ -3,6 +3,7 @@
     <div class="showif" v-show="this.flag">
       <div id="viz" class="neojs"></div>
     </div>
+    
 
     <div v-show="this.flag == 0" style="text-align: center; height: 445px">
       <div style="height: 210px"></div>
