@@ -15,7 +15,7 @@
                 min-height: 20px;
                 float: left;
                 border-radius: 20px;
-                background-color: rgb(119, 136, 153, 0.5);
+                background-color: rgb(254,242,204,0.5);
                 word-wrap: break-word;
               "
             >

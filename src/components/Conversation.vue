@@ -2,36 +2,36 @@
   <div>
     <div v-if="this.flag">
       <a-row>
-          <div style="margin-top: 50px; float: right">
+        <div style="margin-top: 50px; float: right">
+          <div
+            style="
+              margin-right: 20px;
+              margin-top: 15px;
+              min-height: 40px;
+              min-width: 20px;
+              float: left;
+              border-radius: 20px;
+              background-color: rgb(135, 206, 250, 1);
+              word-wrap: break-word;
+            "
+          >
+            <!-- min-height -->
             <div
               style="
-                margin-right: 20px;
-                margin-top: 15px;
-                min-height: 40px;
-                min-width: 20px;
-                float: left;
-                border-radius: 20px;
-                background-color: rgb(135, 206, 250, 1);
-                word-wrap: break-word;
+                margin-left: 10px;
+                margin-top: 10px;
+                margin-right: 10px;
+                margin-bottom: 10px;
               "
             >
-              <!-- min-height -->
-              <div
-                style="
-                  margin-left: 10px;
-                  margin-top: 10px;
-                  margin-right: 10px;
-                  margin-bottom: 10px;
-                "
-              >
-                <div v-html="this.words"></div>
-              </div>
+              <div v-html="this.words"></div>
             </div>
-            <a-avatar
-              style="width: 70px; height: 70px; float: left; margin-right:20px;"
-              :src="queURL"
-            />
           </div>
+          <a-avatar
+            style="width: 70px; height: 70px; float: left; margin-right: 20px"
+            :src="queURL"
+          />
+        </div>
       </a-row>
     </div>
     <div v-if="this.flag == 0">
@@ -54,7 +54,7 @@
                     min-height: 20px;
                     float: left;
                     border-radius: 20px;
-                    background-color: rgb(119, 136, 153, 0.5);
+                    background-color: rgb(254, 242, 204, 0.5);
                     word-wrap: break-word;
                   "
                 >
