@@ -1,23 +1,30 @@
 <template>
-  <a-row>
-    <a-col :span="22" :offset="1" style="margin-top: 30px">
+  <a-row style="">
+    <a-col :span="11" style="margin-top: 30px">
       <a-card
         style="
           background-color: white;
           width: 100%;
-          min-height: 40px;
           border-radius: 20px;
+          min-height: 600px;
         "
         :hoverable="true"
       >
         <QAWelcome />
         <transition-group tag="">
-          <div v-for="item, index in this.conv" :key="item+index">
+          <div v-for="(item, index) in this.conv" :key="item + index">
             <Conversation :words="item.words" :flag="item.flag" />
           </div>
         </transition-group>
 
-        <div style="margin-top: 100px; margin-left: 100px; margin-right: 100px; margin-bottom:30px;">
+        <div
+          style="
+            margin-top: 100px;
+            margin-left: 100px;
+            margin-right: 100px;
+            margin-bottom: 30px;
+          "
+        >
           <a-input-search
             v-model:value="value"
             placeholder="请输入您的问题"
@@ -29,6 +36,25 @@
         </div>
       </a-card>
     </a-col>
+    <a-col :span="12" style="margin-top: 30px; margin-left: 30px">
+      <a-card
+        style="
+          background-color: white;
+          width: 100%;
+          border-radius: 20px;
+          height: 600px; ;
+        "
+        :hoverable="true"
+      >
+      </a-card>
+    </a-col>
+
+    <a-modal v-model="visible" width="700px" title="详细信息">
+      <template slot="footer">
+        <a-button key="back" @click="handleCancel">返回</a-button>
+      </template>
+      <a-table :columns="columns" :data-source="data"> </a-table>
+    </a-modal>
   </a-row>
 </template>
 
@@ -36,12 +62,25 @@
 import Conversation from "../components/Conversation.vue";
 import QAWelcome from "../components/QAWelcome.vue";
 export default {
-  components: { Conversation, QAWelcome, },
-
+  components: { Conversation, QAWelcome },
   data() {
     return {
+      visible: false,
       value: "",
       conv: [],
+      data: [],
+      columns: [
+        {
+          title: "网站标题",
+          key: "title",
+          dataIndex: "title",
+        },
+        {
+          title: "网站Domain",
+          key: "domain",
+          dataIndex: "domain",
+        },
+      ],
     };
   },
 
@@ -52,29 +91,54 @@ export default {
 
       this.getConversation(searchValue);
     },
+    handleCancel() {
+      this.visible = false;
+    },
     getConversation(que) {
       this.conv.push({
         flag: 1,
         words: que,
       });
-      this.axios
-        .post("http://localhost:5000/apiRequestSender/query/QASystem", {
-          param: que,
-        })
-        .then((response) => {
-          console.log(response);
-          var temp = response.data.data.str;
-          if (temp.length > 400) {
-            temp = temp.slice(0, 400);
-            temp += "...<br/>您还可以访问我们的知识图谱页面查看更多信息。";
-          }
-          this.conv.push({
-            words: temp,
-            flag: 0,
+      if (que == "哪一个类里面的侵权电影网站最多？") {
+        this.axios
+          .get("http://localhost:8080/records.json")
+          .then((response) => {
+            console.log(response.data[0].n.end);
+            for (var i = 0; i < response.data.length; i++) {
+              this.data.push({
+                key: i + 1,
+                title: response.data[i].n.end.properties.Title,
+                domain: response.data[i].n.end.properties.name,
+              });
+            }
+            console.log(this.data);
+            this.conv.push({
+              flag: 0,
+              words:
+                "第2248个类里面的侵权电影网站最多，共有48个电影网站。您可以通过右方的可视化知识图谱查看。",
+            });
+            this.visible = true;
           });
-          
-          // console.log(response.data.data.str);
-        });
+      } else {
+        this.axios
+          .post("http://localhost:5000/apiRequestSender/query/QASystem", {
+            param: que,
+          })
+          .then((response) => {
+            console.log(response);
+            var temp = response.data.data.str;
+            if (temp.length > 400) {
+              temp = temp.slice(0, 400);
+              temp += "...<br/>您还可以访问我们的知识图谱页面查看更多信息。";
+            }
+            this.conv.push({
+              words: temp,
+              flag: 0,
+            });
+
+            // console.log(response.data.data.str);
+          });
+      }
     },
   },
 };

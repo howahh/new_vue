@@ -96,7 +96,7 @@
             <a-col :span="8">
               <img
                 style="width: 120px"
-                src="http://localhost:8080/images/captcha2.jpg"
+                src="http://localhost:8080/images/captcha5.jpg"
                 alt=""
             /></a-col>
           </a-row>
