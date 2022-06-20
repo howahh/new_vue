@@ -8,7 +8,7 @@
 				<!-- Footer Copyright Notice -->
 				<br>
 				<p class="copyright">
-					© 2022
+					Piracy Spy © 2022
 				</p>
 				<!-- / Footer Copyright Notice -->
 

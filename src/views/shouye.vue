@@ -27,116 +27,11 @@
         </a-row>
       </a-col>
       <a-col :span="14">
-        <!-- <a-card class="map mb-24"> -->
-        <!-- <WidgetGlobe></WidgetGlobe> -->
         <Mymap></Mymap>
         <!-- </a-card> -->
       </a-col>
     </a-row>
-    <!-- <a-row>
-      <a-col :span="24">
-        <a-card class="first-line mb-24">
-          <a-row :gutter="24">
-            <a-col :span="4">
-              <dv-decoration-9
-                style="
-                  width: 150px;
-                  height: 150px;
-                  margin-top: 5px;
-                  margin-left: 10px;
-                "
-                :color="['rgb(179,127,235)', 'rgb(24,144,255)']"
-                dur="7"
-              >
-                <a-row><span style="color: #1890ff">爬虫1:</span></a-row>
-                <br />
-                <a-row><span style="color: #b37feb">29%</span></a-row>
-              </dv-decoration-9>
-            </a-col>
-            <a-col :span="4">
-              <dv-decoration-9
-                style="
-                  width: 150px;
-                  height: 150px;
-                  margin-top: 5px;
-                  margin-left: 10px;
-                "
-                :color="['rgb(24,144,255)', 'rgb(179,127,235)']"
-                dur="7"
-              >
-                <div style="color: #1890ff">爬虫1:</div>
-                <br />
-                <div style="color: #b37feb">29%</div>
-              </dv-decoration-9>
-            </a-col>
-            <a-col :span="4">
-              <dv-decoration-9
-                style="
-                  width: 150px;
-                  height: 150px;
-                  margin-top: 5px;
-                  margin-left: 10px;
-                "
-                :color="['rgb(24,144,255)', 'rgb(179,127,235)']"
-                dur="5"
-              >
-                <div style="color: #1890ff">爬虫1:</div>
-                <br />
-                <div style="color: #b37feb">29%</div>
-              </dv-decoration-9>
-            </a-col>
-            <a-col :span="4">
-              <dv-decoration-9
-                style="
-                  width: 150px;
-                  height: 150px;
-                  margin-top: 5px;
-                  margin-left: 10px;
-                "
-                :color="['rgb(24,144,255)', 'rgb(179,127,235)']"
-                dur="6"
-              >
-                <div style="color: #1890ff">爬虫1:</div>
-                <br />
-                <div style="color: #b37feb">29%</div>
-              </dv-decoration-9>
-            </a-col>
-            <a-col :span="4">
-              <dv-decoration-9
-                style="
-                  width: 150px;
-                  height: 150px;
-                  margin-top: 5px;
-                  margin-left: 10px;
-                "
-                :color="['rgb(24,144,255)', 'rgb(179,127,235)']"
-                dur="2"
-              >
-                <div style="color: #1890ff">爬虫1:</div>
-                <br />
-                <div style="color: #b37feb">29%</div>
-              </dv-decoration-9>
-            </a-col>
-            <a-col :span="4">
-              <dv-decoration-9
-                style="
-                  width: 150px;
-                  height: 150px;
-                  margin-top: 5px;
-                  margin-left: 10px;
-                "
-                :color="['rgb(24,144,255)', 'rgb(179,127,235)']"
-                dur="3"
-              >
-                <div style="color: #1890ff">爬虫1:</div>
-                <br />
-                <div style="color: #b37feb">29%</div>
-              </dv-decoration-9>
-            </a-col>
-          </a-row>
-        </a-card>
-      </a-col>
-    </a-row> -->
+
     <a-row :gutter="24">
       <a-col>
         <a-card
@@ -334,7 +229,6 @@
 import CardBarChart from "../components/Cards/CardBarChart";
 import Lines from "../components/MyCharts/Lines";
 import CardLineChart from "../components/Cards/CardLineChart.vue";
-import WidgetGlobe from "../components/Widgets/WidgetGlobe";
 import Mymap from "../components/Mymap";
 import BarsForDash from "../components/BarsForDash";
 import IndexRoll from "../components/IndexRoll";
@@ -346,7 +240,6 @@ export default {
     Pie,
     CardBarChart,
     CardLineChart,
-    WidgetGlobe,
     Mymap,
     BarsForDash,
     IndexRoll,
