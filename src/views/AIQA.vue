@@ -199,6 +199,7 @@ export default {
 	 * 要用all不用transform，有可能是因为splice删除效果不是transform
 	 */
   /* transition: all 1s; */
+  
 }
 .v-enter-active {
   transition: all 1s;
