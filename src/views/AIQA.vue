@@ -46,6 +46,7 @@
         "
         :hoverable="true"
       >
+        <div id="viz" class="neojs"></div>
       </a-card>
     </a-col>
 
@@ -59,6 +60,7 @@
 </template>
 
 <script>
+import * as NeoVis from "neovis.js";
 import Conversation from "../components/Conversation.vue";
 import QAWelcome from "../components/QAWelcome.vue";
 export default {
@@ -69,6 +71,7 @@ export default {
       value: "",
       conv: [],
       data: [],
+      viz: null,
       columns: [
         {
           title: "网站标题",
@@ -85,6 +88,46 @@ export default {
   },
 
   methods: {
+    draw() {
+      var config = {
+        container_id: "viz",
+        server_url: "bolt://localhost:7687",
+        server_user: "neo4j",
+        server_password: "1234",
+        labels: {
+          //"Character": "name",
+          // Character: {
+          //   caption: "name",
+          //   size: "pagerank",
+          //   community: "community",
+          //   //"sizeCypher": "MATCH (n) WHERE id(n) = {id} MATCH (n)-[r]-() RETURN sum(r.weight) AS c"
+          // },
+          Domain: {
+            caption: "name",
+            size: 2,
+            community: "community",
+          },
+          Cluster: {
+            caption: "name",
+            size: 1,
+          },
+          Movie: {
+            size: 1,
+          },
+        },
+        relationships: {
+          has_movie: {
+            thickness: "weight",
+            caption: true,
+          },
+        },
+        //查询节点的语句，写成你们的
+        initial_cypher:
+          "match p=(c:Cluster)-[:in_cluster]-(d:Domain) where c.name='2248' return p",
+      };
+      this.viz = new NeoVis.default(config);
+      this.viz.render();
+    },
     onSearch(searchValue) {
       this.value = "";
       // console.log("use value", searchValue);
@@ -99,26 +142,30 @@ export default {
         flag: 1,
         words: que,
       });
-      if (que == "哪一个类里面的侵权电影网站最多？") {
-        this.axios
-          .get("http://localhost:8080/records.json")
-          .then((response) => {
-            console.log(response.data[0].n.end);
-            for (var i = 0; i < response.data.length; i++) {
-              this.data.push({
-                key: i + 1,
-                title: response.data[i].n.end.properties.Title,
-                domain: response.data[i].n.end.properties.name,
+      if (que == "哪一个类里面的侵权电影网站最多") {
+        this.draw();
+        setTimeout(
+          this.axios
+            .get("http://localhost:8080/records.json")
+            .then((response) => {
+              console.log(response.data[0].n.end);
+              for (var i = 0; i < response.data.length; i++) {
+                this.data.push({
+                  key: i + 1,
+                  title: response.data[i].n.end.properties.Title,
+                  domain: response.data[i].n.end.properties.name,
+                });
+              }
+              console.log(this.data);
+              this.conv.push({
+                flag: 0,
+                words:
+                  "2248类里面的侵权电影网站最多，共有48个电影网站。您可以通过右方的可视化知识图谱查看。",
               });
-            }
-            console.log(this.data);
-            this.conv.push({
-              flag: 0,
-              words:
-                "第2248个类里面的侵权电影网站最多，共有48个电影网站。您可以通过右方的可视化知识图谱查看。",
-            });
-            this.visible = true;
-          });
+              this.visible = true;
+            }),
+          20000
+        );
       } else {
         this.axios
           .post("http://localhost:5000/apiRequestSender/query/QASystem", {
@@ -155,6 +202,10 @@ export default {
 }
 .v-enter-active {
   transition: all 1s;
+}
+#viz {
+  height: 600px;
+  width: 100%;
 }
 .v-move {
   /* transition: all 1s; */
