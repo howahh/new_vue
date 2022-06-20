@@ -14,23 +14,7 @@ import VueDarkMode from "@growthbunker/vuedarkmode"
 import VueTimeline from "@growthbunker/vuetimeline";
 
 Vue.use(VueTimeline);
-// import NeoVis from 'neovis.js';
-Vue.use(VueDarkMode, {
-  // Specify the theme to use: dark or light (dark by default).
-  theme: "dark",
 
-  // Specify the components to declare globally in your project
-  // When undefined, null or given an empty array, all components will be imported
-  components: [
-    // Base components
-    "alert", "avatar", "badge", "button", "divider", "heading", "icon", "progress-bar", "spinner", "div",
-
-    // Field components
-    "checkbox", "file", "image-uploader", "input", "input-numeric", "label", "message", "radios", "select", "tabs", "textarea", "toggle"
-  ]
-});
-import VueParticles from 'vue-particles'
-Vue.use(VueParticles)
 Vue.use(dataV)
 Vue.use(ElementUI);
 Vue.prototype.$echarts = echarts;
